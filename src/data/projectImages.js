@@ -4,7 +4,7 @@ export const projectImages = {
     images: [
       {
         name: 'Home Page',
-        path: '/images/proposalGen_HomePage.png',
+        path: '/images/proposalGen.png',
         description: 'Main dashboard and proposal generation interface',
         alt: 'proposalGen home page showing AI proposal generation'
       },
@@ -102,11 +102,35 @@ export const projectImages = {
     title: 'FunngroWeb',
     images: [
       {
-        name: 'Logo',
-        path: '/images/logo.png',
-        description: 'Portfolio website logo and branding',
-        alt: 'FunngroWeb portfolio logo'
-      }
+        name: 'Home',
+        path: '/images/funngroWeb_home.png',
+        description: 'Portfolio website home page',
+        alt: 'FunngroWeb portfolio home page'
+      },
+      {
+        name: 'About',
+        path: '/images/funngroWeb_about.png',
+        description: 'Portfolio website about page',
+        alt: 'FunngroWeb portfolio about page'
+      },
+      {
+        name: 'Projects',
+        path: '/images/funngroWeb_project.png',
+        description: 'Portfolio website projects page',
+        alt: 'FunngroWeb portfolio projects page'
+      },
+      {
+        name: 'Choose Me',
+        path: '/images/funngroWeb_chooseme.png',
+        description: 'Portfolio website choose me page',
+        alt: 'FunngroWeb portfolio choose me page'
+      },
+      {
+        name: 'Contact And Footer',
+        path: '/images/funngroWeb_footer.png',
+        description: 'Portfolio website contact and footer',
+        alt: 'FunngroWeb portfolio contact and footer'
+      }  
     ]
   },
   5: { // Valentine-

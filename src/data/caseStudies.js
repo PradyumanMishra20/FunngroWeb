@@ -3,7 +3,7 @@ export const caseStudies = {
     id: 1,
     title: 'proposalGen',
     shortDescription: 'AI-powered proposal generation platform that streamlines client communication',
-    heroImage: '/images/proposalGen_HomePage.png',
+    heroImage: '/images/proposalGen.png',
     problem: 'Freelancers and agencies spend countless hours creating proposals from scratch, leading to inconsistent quality and wasted time that could be spent on billable work. The manual process often results in missing key sections, pricing errors, and unprofessional formatting.',
     solution: 'Built an intelligent web application that uses AI to generate structured, professional proposals in minutes. The platform includes customizable templates, smart pricing calculators, integrated client management, and automated follow-up reminders. Users can input project requirements and receive comprehensive proposals with proper formatting, pricing breakdowns, and terms.',
     outcome: 'Reduced proposal creation time by 85% while improving win rates by 40%. Users report higher client satisfaction due to professional presentation and comprehensive documentation. The platform now serves over 500 active users generating 2,000+ proposals monthly.',
@@ -67,28 +67,6 @@ export const caseStudies = {
   },
   4: {
     id: 4,
-    title: 'FunngroWeb',
-    shortDescription: 'Professional portfolio website showcasing projects and technical expertise',
-    heroImage: '/images/logo.png',
-    problem: 'Needed a modern, professional online presence to showcase development work and attract potential clients. Existing portfolio solutions were either too template-based or required extensive customization to achieve the desired professional appearance.',
-    solution: 'Built a custom portfolio website from scratch using modern React development practices. Implemented smooth animations, responsive design, dark theme, and optimized performance. Created reusable components and a clean architecture for easy maintenance and updates.',
-    outcome: 'Successfully launched a professional portfolio that generated 15+ client inquiries in the first month. Achieved 95+ Lighthouse performance scores and positive feedback on user experience and design quality.',
-    techStack: ['React', 'Tailwind CSS', 'Framer Motion', 'React Intersection Observer', 'React Router'],
-    keyFeatures: [
-      'Smooth scroll animations and micro-interactions',
-      'Fully responsive design optimized for all devices',
-      'Dark theme with gradient accents and modern typography',
-      'Project filtering and categorization system',
-      'Contact form with validation and email integration',
-      'SEO optimization and accessibility features'
-    ],
-    challenges: 'Implementing smooth animations without compromising performance. Used Framer Motion with proper optimization techniques and lazy loading to maintain fast load times while providing engaging interactions.',
-    results: 'Achieved 100/100 Lighthouse performance score. Reduced bounce rate to 25% compared to previous portfolio. Generated multiple high-value client leads within first month of launch.',
-    github: 'https://github.com/pradyumanmishra/FunngroWeb',
-    liveDemo: null
-  },
-  5: {
-    id: 5,
     title: 'Valentine-',
     shortDescription: 'Themed landing page demonstrating modern web design capabilities',
     heroImage: '/images/logo.png',
@@ -108,7 +86,29 @@ export const caseStudies = {
     results: 'Page achieved 60fps animations on modern browsers. Featured in CSS animation showcases. Demonstrated proficiency in advanced CSS techniques.',
     github: 'https://github.com/pradyumanmishra/Valentine-',
     liveDemo: null
-  }
+  },
+ 5: {
+    id: 5,
+    title: 'FunngroWeb',
+    shortDescription: 'Professional portfolio website showcasing projects and technical expertise',
+    heroImage: '/images/funngroWeb_home.png',
+    problem: 'Needed a modern, professional online presence to showcase development work and attract potential clients. Existing portfolio solutions were either too template-based or required extensive customization to achieve the desired professional appearance.',
+    solution: 'Built a custom portfolio website from scratch using modern React development practices. Implemented smooth animations, responsive design, dark theme, and optimized performance. Created reusable components and a clean architecture for easy maintenance and updates.',
+    outcome: 'Successfully launched a professional portfolio that generated 15+ client inquiries in the first month. Achieved 95+ Lighthouse performance scores and positive feedback on user experience and design quality.',
+    techStack: ['React', 'Tailwind CSS', 'Framer Motion', 'React Intersection Observer', 'React Router'],
+    keyFeatures: [
+      'Smooth scroll animations and micro-interactions',
+      'Fully responsive design optimized for all devices',
+      'Dark theme with gradient accents and modern typography',
+      'Project filtering and categorization system',
+      'Contact form with validation and email integration',
+      'SEO optimization and accessibility features'
+    ],
+    challenges: 'Implementing smooth animations without compromising performance. Used Framer Motion with proper optimization techniques and lazy loading to maintain fast load times while providing engaging interactions.',
+    results: 'Achieved 100/100 Lighthouse performance score. Reduced bounce rate to 25% compared to previous portfolio. Generated multiple high-value client leads within first month of launch.',
+    github: 'https://github.com/pradyumanmishra/FunngroWeb',
+    liveDemo: null
+  },
 };
 
 export const getCaseStudyById = (id) => {

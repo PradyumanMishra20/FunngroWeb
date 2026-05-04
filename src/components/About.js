@@ -70,7 +70,7 @@ const About = () => {
                 transition={{ duration: 0.3 }}
               >
                 <img
-                  src="/images/profile-placeholder.jpg"
+                  src="/images/profilePic.jpeg"
                   alt="Profile"
                   className="w-full h-full object-cover"
                   onError={(e) => {

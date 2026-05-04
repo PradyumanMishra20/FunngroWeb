@@ -1,147 +1,212 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useScrollAnimation, fadeInUpVariants, slideInLeftVariants, slideInRightVariants, staggerContainerVariants, staggerItemVariants } from '../hooks/useScrollAnimation';
 
 const About = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const { ref, controls } = useScrollAnimation();
 
-  const achievements = [
-    {
-      number: '50+',
-      label: 'Projects Delivered',
-    },
-    {
-      number: '95%',
-      label: 'Client Satisfaction',
-    },
-    {
-      number: '$2.3M',
-      label: 'Revenue Generated',
-    },
+  const skills = [
+    { name: 'React/Next.js', level: 95, color: 'from-blue-500 to-cyan-500' },
+    { name: 'Node.js/Express', level: 90, color: 'from-green-500 to-emerald-500' },
+    { name: 'TypeScript', level: 85, color: 'from-blue-600 to-indigo-600' },
+    { name: 'PostgreSQL/MongoDB', level: 88, color: 'from-purple-500 to-pink-500' },
+    { name: 'AWS/Cloud', level: 82, color: 'from-orange-500 to-red-500' },
+    { name: 'UI/UX Design', level: 75, color: 'from-pink-500 to-rose-500' }
+  ];
+
+  const stats = [
+    { number: '5+', label: 'Projects Built' },
+    { number: 'Strong', label: 'Focus on Frontend Development' },
+    { number: 'Consistent', label: 'Learning & Iteration' }
   ];
 
   return (
-    <section id="about" className="section-padding bg-background-secondary">
-      <div className="container-custom" ref={ref}>
-        {/* Section Title */}
+    <section id="about" className="section-padding section-light section-divider">
+      <div className="container-tight" ref={ref}>
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          variants={fadeInUpVariants}
+          initial="hidden"
+          animate={controls}
+          className="text-center mb-20"
         >
-          <h2 className="text-heading-1 md:text-display-3 font-display font-bold mb-4">
+          <h2 
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: "700",
+              letterSpacing: "-0.02em",
+              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}
+          >
             About Me
           </h2>
-          <div className="w-20 h-1 bg-brand-primary mx-auto rounded-full" />
+          <motion.div 
+            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
         </motion.div>
 
-        {/* Mobile-Optimized Main Content */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-16">
-          {/* Photo/Visual Side */}
+        {/* Main Content with Photo */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          {/* Photo & Personal Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative order-2 lg:order-1"
+            variants={slideInLeftVariants}
+            initial="hidden"
+            animate={controls}
+            transition={{ delay: 0.2 }}
+            className="space-y-8"
           >
-            <div className="relative aspect-square max-w-xs sm:max-w-md mx-auto">
-              {/* Placeholder for professional photo */}
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-24 h-24 sm:w-32 sm:h-32 bg-accent-primary/20 rounded-full mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-                      <span className="text-2xl sm:text-4xl font-bold text-accent-primary">JD</span>
-                    </div>
-                    <p className="text-accent-primary font-medium text-sm">Professional Photo</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 bg-brand-tertiary/20 rounded-full blur-xl" />
-              <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-32 sm:h-32 bg-brand-primary/20 rounded-full blur-xl" />
+            {/* Photo */}
+            <div className="relative group">
+              <motion.div
+                className="relative w-64 h-64 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src="/images/profile-placeholder.jpg"
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `
+                      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600">
+                        <div class="text-white text-6xl font-bold">PM</div>
+                      </div>
+                    `;
+                  }}
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </motion.div>
             </div>
-          </motion.div>
 
-          {/* Mobile-Optimized Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-4 sm:space-y-6 order-1 lg:order-2"
-          >
-            <div>
-              <h3 className="text-xl sm:text-2xl lg:text-heading-2 font-semibold mb-3 sm:mb-4 text-accent-primary">
-                Transforming Ideas Into Digital Reality
+            {/* Personal Bio */}
+            <div className="text-center lg:text-left">
+              <h3 
+                className="text-2xl sm:text-3xl font-bold mb-4 leading-tight"
+                style={{
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontWeight: "700",
+                  letterSpacing: "-0.02em",
+                  background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
+              >
+                About Me
               </h3>
-              <p className="text-sm sm:text-base lg:text-body text-accent-secondary leading-relaxed">
-                For the past 8 years, I've been helping businesses unlock their digital potential through strategic web development and design. My approach combines technical expertise with a deep understanding of user behavior to create experiences that not only look beautiful but deliver real business results.
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                I'm a passionate web developer focused on creating modern, responsive applications that solve real problems. 
+                I love turning ideas into functional products that users enjoy interacting with.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Currently exploring new technologies and building projects that challenge me to grow as a developer. 
+                I believe in clean code, user-centered design, and continuous learning.
               </p>
             </div>
 
-            <div>
-              <p className="text-sm sm:text-base lg:text-body text-accent-secondary leading-relaxed">
-                I specialize in working with startups and established companies looking to scale their digital presence. Whether it's building a custom e-commerce platform from scratch or redesigning a legacy system for better performance, I bring the same level of dedication and attention to detail to every project.
-              </p>
-            </div>
-
-            {/* Mobile-Optimized Philosophy Quote */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-background-tertiary border-l-4 border-brand-primary p-4 sm:p-6 rounded-r-lg"
+            {/* Stats */}
+            <motion.div 
+              variants={staggerContainerVariants}
+              initial="hidden"
+              animate={controls}
+              transition={{ delay: 0.4 }}
+              className="grid grid-cols-3 gap-8"
             >
-              <blockquote className="text-sm sm:text-base lg:text-body text-accent-primary italic">
-                "Great development isn't just about writing clean code—it's about understanding the business problem first and then building the most elegant solution. The best websites are invisible to users; they just work."
-              </blockquote>
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  variants={staggerItemVariants}
+                  className="text-center"
+                >
+                  <motion.div 
+                    className="text-3xl sm:text-4xl font-bold text-white mb-2"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {stat.number}
+                  </motion.div>
+                  <div className="text-sm text-gray-400">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Skills Section */}
+          <motion.div
+            variants={slideInRightVariants}
+            initial="hidden"
+            animate={controls}
+            transition={{ delay: 0.4 }}
+            className="space-y-6"
+          >
+            <h3 
+                className="text-2xl sm:text-3xl font-bold mb-8 leading-tight"
+                style={{
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontWeight: "700",
+                  letterSpacing: "-0.02em",
+                  background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
+              >
+                Technologies That Deliver Results
+              </h3>
+            <motion.div variants={staggerContainerVariants} initial="hidden" animate={controls}>
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={index}
+                  variants={staggerItemVariants}
+                  className="space-y-2"
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="text-white font-medium">{skill.name}</span>
+                    <motion.span 
+                      className="text-gray-400 text-sm"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {skill.level}%
+                    </motion.span>
+                  </div>
+                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${skill.level}%` }}
+                      transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
+                    />
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
 
-        {/* Enhanced Achievement Metrics */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.05 }}
-              className="achievement-metric bg-gradient-to-br from-background-secondary to-background-tertiary border border-accent-tertiary/30 rounded-2xl p-8 text-center card-hover"
-            >
-              <div className="achievement-number text-gradient text-4xl font-bold mb-3">
-                {achievement.number}
-              </div>
-              <div className="achievement-label text-accent-secondary font-medium">
-                {achievement.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA Section */}
+        {/* Philosophy Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          className="text-center"
+          variants={fadeInUpVariants}
+          initial="hidden"
+          animate={controls}
+          transition={{ delay: 1 }}
+          className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-8 text-center"
+          whileHover={{ y: -2, transition: { duration: 0.2 } }}
         >
-          <button
-            onClick={() => {
-              const element = document.getElementById('projects');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="btn-secondary text-lg px-8 py-4"
-          >
-            Learn More About My Process
-          </button>
+          <blockquote className="text-xl text-gray-300 italic max-w-3xl mx-auto">
+            "I solve business problems with software that works, scales, and delivers measurable results."
+          </blockquote>
         </motion.div>
       </div>
     </section>

@@ -6,7 +6,7 @@
 /* Production-level CSS optimizations */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Account for fixed header */
+  scroll-padding-top: 80px; /* Offset for fixed navbar */
 }
 
 /* Custom scrollbar */
@@ -26,6 +26,25 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #5558E3;
+}
+
+/* Custom scrollbar for modal */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.5);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.7);
 }
 
 /* Selection color */
@@ -188,12 +207,40 @@ img {
 
 /* Enhanced Section spacing */
 .section-padding {
-  @apply py-16 sm:py-20 lg:py-32;
+  @apply py-12 sm:py-16 md:py-20 lg:py-24;
+}
+
+/* Tighter section spacing for better flow */
+.section-padding-sm {
+  @apply py-8 sm:py-12 md:py-16 lg:py-20;
 }
 
 /* Mobile-optimized Container styles */
 .container-custom {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Tighter container for better visual density */
+.container-tight {
+  @apply max-w-none mx-auto px-2 sm:px-4 lg:px-6;
+}
+
+/* Section dividers */
+.section-divider {
+  @apply border-t border-white/10;
+}
+
+/* Section backgrounds for separation */
+.section-dark {
+  @apply bg-slate-950;
+}
+
+.section-medium {
+  @apply bg-gradient-to-b from-slate-950 to-slate-900;
+}
+
+.section-light {
+  @apply bg-gradient-to-b from-slate-900 to-slate-950;
 }
 
 /* Mobile-specific spacing utilities */
@@ -255,7 +302,8 @@ img {
 
 /* Scroll indicator */
 .scroll-indicator {
-  @apply absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce;
+  @apply left-1/2 transform -translate-x-1/2 animate-bounce;
+  position: relative;
 }
 
 /* Form input styles */
@@ -279,4 +327,32 @@ img {
 
 .achievement-label {
   @apply text-sm text-accent-secondary;
+}
+
+/* Force Space Grotesk for hero heading */
+.font-space-grotesk-force {
+  font-family: 'Space Grotesk', system-ui, sans-serif !important;
+}
+
+/* Custom media query for scroll indicator at 1000px */
+@media (max-width: 999px) {
+  .scroll-indicator-large-screen {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .scroll-indicator-responsive {
+    bottom: -50px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .scroll-indicator-text-responsive {
+    font-size: 14px !important;
+  }
+  
+  .scroll-indicator-arrow-responsive {
+    height: 80px !important;
+  }
 }

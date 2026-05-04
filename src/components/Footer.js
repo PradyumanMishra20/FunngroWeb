@@ -50,8 +50,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-background-secondary border-t border-accent-tertiary">
-      <div className="container-custom">
+    <footer className="bg-slate-950 border-t border-white/10">
+      <div className="container-tight py-8">
         <div className="py-12">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Brand */}
@@ -65,7 +65,7 @@ const Footer = () => {
                 Portfolio
               </h3>
               <p className="text-accent-secondary mb-6 max-w-sm">
-                Helping businesses grow through exceptional digital experiences since 2016.
+                Building real, working web applications — not just designs.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (

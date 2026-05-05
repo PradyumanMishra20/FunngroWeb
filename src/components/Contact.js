@@ -172,7 +172,7 @@ const Contact = () => {
             <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
           </div>
           <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            Let's discuss how I can help you achieve your business goals. I deliver revenue-generating applications and operational efficiency.
+            Let's talk about your idea and turn it into a clean, working web application.
           </p>
         </motion.div>
 

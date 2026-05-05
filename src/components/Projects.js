@@ -230,7 +230,7 @@ const Projects = React.memo(() => {
     {
       id: 3,
       title: 'teenlancer',
-      description: 'A concept platform connecting teenagers with small freelance opportunities, focused on UI and usability.',
+      description: 'A platform connecting students with tutors for note sharing and academic collaboration.',
       tech: ['React', 'Node.js', 'UI/UX Design'],
       image: '/images/teenlancer_homepage.png',
       imageAlt: 'Teen freelancing platform interface',
@@ -271,7 +271,7 @@ const Projects = React.memo(() => {
               backgroundClip: "text"
             }}
           >
-            These Are My Some Projects
+            These Are Some of My Projects
           </h2>
           <div className="flex items-center justify-center space-x-2 mb-6">
             <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />

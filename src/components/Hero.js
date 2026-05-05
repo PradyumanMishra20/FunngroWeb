@@ -15,10 +15,10 @@ const Hero = () => {
   const { glowRef, glowPosition, isVisible: glowVisible } = useCursorGlow(heroRef);
   
   // Text reveal hooks
-  const headlineText = "I design and build responsive web applications that actually work in the real world.";
+  const headlineText = "I Design and Build Responsive Web Applications That Actually Work In The Real World.";
   const { ref: headlineRef, controls: headlineControls, words: headlineWords, containerVariants: headlineContainerVariants, wordVariants: headlineWordVariants } = useTextReveal(headlineText, 0.05);
   
-  const subheadingText = "SaaS Platforms That Convert Visitors Into Customers";
+  const subheadingText = "Focused on creating practical solutions through modern web development";
   const { ref: subheadingRef, controls: subheadingControls, words: subheadingWords, containerVariants: subheadingContainerVariants, wordVariants: subheadingWordVariants } = useTextReveal(subheadingText, 0.08);
 
   const scrollToProjects = () => {
@@ -292,7 +292,7 @@ const Hero = () => {
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
                 />
-                <span className="text-gray-400 text-sm">1+ year experience</span>
+                <span className="text-gray-400 text-sm">Building real projects</span>
               </div>
               <div className="flex items-center space-x-2">
                 <motion.div 
@@ -300,7 +300,7 @@ const Hero = () => {
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 1 }}
                 />
-                <span className="text-gray-400 text-sm">5+ projects delivered</span>
+                <span className="text-gray-400 text-sm">Learning through practice</span>
               </div>
             </motion.div>
           </div>

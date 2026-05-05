@@ -150,7 +150,7 @@ href: 'https://wa.me/918454894108',
               viewport={{ once: true }}
               className="text-accent-tertiary text-sm"
             >
-              © {currentYear} Your Name. All rights reserved.
+              © {currentYear} Pradyuman Mishra. All rights reserved.
             </motion.div>
 
             <motion.div

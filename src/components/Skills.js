@@ -141,7 +141,7 @@ const Skills = React.memo(() => {
               backgroundClip: "text"
             }}
           >
-            Technical Skills
+            Skills I'm Building
           </h2>
           <div className="flex items-center justify-center space-x-2 mb-6">
             <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />
@@ -149,8 +149,8 @@ const Skills = React.memo(() => {
             <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
           </div>
           <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            Comprehensive expertise across the full stack development ecosystem, 
-            from modern frontend frameworks to scalable backend architectures and cloud deployment.
+            Skills I'm currently using and improving through real projects, 
+            focused on clean code and practical problem-solving.
           </p>
         </motion.div>
 

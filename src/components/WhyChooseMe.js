@@ -10,55 +10,55 @@ const WhyChooseMe = () => {
 
   const reasons = [
     {
-      title: "Core Focus",
-      description: "What I prioritize in every project.",
-      icon: "🎯",
-      color: "from-blue-500 to-purple-500",
-      features: ["Clean code", "Responsive layouts", "Fast performance", "Simple user experience"]
-    },
-    {
-      title: "Fast Delivery",
-      description: "Working solutions delivered quickly without sacrificing quality.",
-      icon: "⚡",
+      title: "Clean Code",
+      description: "I write structured, maintainable code with attention to detail and best practices.",
+      icon: "🧹",
       color: "from-blue-500 to-cyan-500",
-      features: ["On-time delivery", "Rapid prototyping", "Scalable from launch"]
+      features: ["Modern React patterns", "Component organization", "Code readability"]
     },
     {
-      title: "Technical Partner",
-      description: "I challenge assumptions and ensure your investment pays off.",
-      icon: "🤝",
+      title: "Strong Frontend",
+      description: "I build modern, responsive interfaces with attention to user experience and accessibility.",
+      icon: "🎨",
       color: "from-purple-500 to-pink-500",
-      features: ["Strategic thinking", "Problem-solving", "Long-term success"]
+      features: ["React expertise", "Responsive design", "Clean components"]
     },
     {
-      title: "Zero Risk",
-      description: "Clear pricing, regular demos, and transparent communication.",
-      icon: "🛡️",
-      color: "from-orange-500 to-red-500",
-      features: ["Fixed pricing", "Weekly demos", "Satisfaction guarantee"]
+      title: "Fast Learning",
+      description: "I quickly adapt to new tools and improve skills through hands-on project work.",
+      icon: "⚡",
+      color: "from-green-500 to-emerald-500",
+      features: ["Quick adaptation", "Continuous improvement", "Practical experience"]
+    },
+    {
+      title: "Clear Communication",
+      description: "I provide regular updates, listen to feedback, and keep the development process transparent.",
+      icon: "💬",
+      color: "from-green-500 to-emerald-500",
+      features: ["Clear timelines", "Honest feedback", "Active collaboration"]
     }
   ];
 
   const process = [
     {
       step: "01",
-      title: "Discovery & Planning",
-      description: "I start by understanding your business goals, users, and technical requirements. This foundation ensures we build the right solution."
+      title: "Understand Idea",
+      description: "I listen to your requirements and clarify the project scope."
     },
     {
       step: "02", 
-      title: "Design & Architecture",
-      description: "I create a detailed technical plan, design system, and architecture that scales. No surprises, just a clear roadmap."
+      title: "Plan Features",
+      description: "I outline the main features and create a simple development plan."
     },
     {
       step: "03",
-      title: "Development & Iteration",
-      description: "I build in focused sprints with regular demos. You see progress weekly and can provide feedback throughout."
+      title: "Build & Improve",
+      description: "I develop the application with regular updates and improvements."
     },
     {
       step: "04",
-      title: "Launch & Support",
-      description: "Deployment is just the beginning. I provide documentation, training, and ongoing support to ensure success."
+      title: "Review & Refine",
+      description: "I test, fix issues, and improve performance and usability."
     }
   ];
 
@@ -93,7 +93,7 @@ const WhyChooseMe = () => {
             <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
           </div>
           <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            I deliver business results, not just code. Every project provides measurable ROI.
+            I focus on writing clean, structured code and creating intuitive user interfaces that work reliably.
           </p>
         </motion.div>
 
@@ -334,7 +334,7 @@ const WhyChooseMe = () => {
           <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Let's discuss your project and see how I can help you achieve your goals. No pressure, just a conversation about what's possible.
+              I focus on creating clean, functional applications and clear communication throughout the development process.
             </p>
             <motion.button
               onClick={() => {
@@ -343,11 +343,17 @@ const WhyChooseMe = () => {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-1 text-lg overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Start the Conversation
+              <span className="relative z-10 flex items-center space-x-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span>Let's Work Together</span>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
           </div>
         </motion.div>

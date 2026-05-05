@@ -1,77 +1,108 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const Skills = () => {
+// Performance optimization: Animation configs outside component
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const progressVariants = {
+  hidden: { width: 0 },
+  visible: { width: 'var(--progress)' }
+};
+
+// Performance detection
+const isLowEndDevice = () => {
+  return navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+};
+
+const shouldReduceMotion = () => {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches || isLowEndDevice();
+};
+
+const Skills = React.memo(() => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+    viewport: { once: true }
   });
 
-  const skills = [
-    // Frontend
-    { name: 'React', category: 'Frontend', level: 95, icon: '⚛️' },
-    { name: 'Tailwind CSS', category: 'Frontend', level: 92, icon: '🎨' },
-    { name: 'Framer Motion', category: 'Frontend', level: 88, icon: '🎬' },
-    { name: 'HTML5', category: 'Frontend', level: 95, icon: '�' },
-    { name: 'CSS3', category: 'Frontend', level: 95, icon: '🎨' },
-    { name: 'JavaScript', category: 'Frontend', level: 92, icon: '⚡' },
-    { name: 'React Router', category: 'Frontend', level: 85, icon: '�️' },
-    
-    // Backend
-    { name: 'Node.js', category: 'Backend', level: 90, icon: '�' },
-    { name: 'Express.js', category: 'Backend', level: 88, icon: '🚂' },
-    { name: 'JWT Authentication', category: 'Backend', level: 85, icon: '�' },
-    
-    // Database
-    { name: 'MySQL', category: 'Database', level: 82, icon: '�' },
-    
-    // APIs & Services
-    { name: 'OpenAI API', category: 'APIs', level: 82, icon: '🤖' },
-    { name: 'Stripe', category: 'APIs', level: 85, icon: '💳' },
-    { name: 'Nodemailer', category: 'APIs', level: 80, icon: '�' },
-    { name: 'Cloudinary', category: 'APIs', level: 80, icon: '☁️' },
-    { name: 'Twilio', category: 'APIs', level: 78, icon: '📱' },
-    { name: 'Firebase', category: 'APIs', level: 82, icon: '�' },
-    
-    // Tools & Others
-    { name: 'Git', category: 'Tools', level: 95, icon: '📦' },
-    { name: 'CSS Animations', category: 'Tools', level: 88, icon: '✨' },
-    { name: 'Flexbox', category: 'Tools', level: 92, icon: '�' },
-    { name: 'Grid', category: 'Tools', level: 90, icon: '⚡' },
-  ];
+  // Memoize skills data
+  const skills = useMemo(() => [
+  // Frontend (your actual strength)
+  { name: 'HTML5', category: 'Frontend', level: 85, icon: '🌐' },
+  { name: 'CSS3', category: 'Frontend', level: 80, icon: '🎨' },
+  { name: 'JavaScript', category: 'Frontend', level: 75, icon: '⚡' },
+  { name: 'React.js', category: 'Frontend', level: 70, icon: '⚛️' },
+  { name: 'Tailwind CSS', category: 'Frontend', level: 78, icon: '🎯' },
 
-  const categories = ['Frontend', 'Backend', 'Database', 'APIs', 'Tools'];
-  const categoryColors = {
-    Frontend: 'from-blue-500 to-cyan-500',
-    Backend: 'from-green-500 to-emerald-500',
-    Database: 'from-purple-500 to-pink-500',
-    APIs: 'from-orange-500 to-red-500',
-    Tools: 'from-gray-500 to-slate-500',
-  };
+  // Backend (learning / basic usage)
+  { name: 'Node.js', category: 'Backend', level: 65, icon: '🟢' },
+  { name: 'Express.js', category: 'Backend', level: 60, icon: '🚂' },
+  { name: 'PHP', category: 'Backend', level: 55, icon: '🐘' },
 
-  const SkillCard = ({ skill, index }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ y: -4, scale: 1.02 }}
-      className="group relative bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-xl p-4 hover:border-white/20 transition-all duration-300"
-    >
+  // Database
+  { name: 'MySQL', category: 'Database', level: 65, icon: '🗄️' },
+
+  // Programming Fundamentals
+  { name: 'C', category: 'Programming', level: 60, icon: '💻' },
+  { name: 'C++', category: 'Programming', level: 60, icon: '⚙️' },
+  { name: 'Python (Basic)', category: 'Programming', level: 55, icon: '🐍' },
+
+  // Tools
+  { name: 'Git & GitHub', category: 'Tools', level: 70, icon: '📦' },
+  { name: 'Responsive Design', category: 'Tools', level: 80, icon: '📱' },
+  { name: 'Windsurf (AI Dev Tool)', category: 'Tools', level: 65, icon: '🌊' }
+], []);
+
+  // Memoize categories
+  const categories = useMemo(() => [
+    'Frontend',
+    'Backend',
+    'Database',
+    'Programming',
+    'Tools'
+  ], []);
+
+  const categoryColors = useMemo(() => ({
+    Frontend: 'from-blue-400 to-cyan-400',
+    Backend: 'from-green-400 to-emerald-400',
+    Database: 'from-purple-400 to-pink-400',
+    Programming: 'from-indigo-400 to-purple-400',
+    Tools: 'from-gray-400 to-slate-400',
+  }), []);
+
+  // Memoize SkillCard component
+  const SkillCard = React.memo(({ skill, index }) => {
+    const shouldReduce = shouldReduceMotion();
+    
+    return (
+      <motion.div
+        variants={shouldReduce ? {} : cardVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        transition={{ duration: shouldReduce ? 0 : 0.3, delay: shouldReduce ? 0 : index * 0.05, ease: "easeOut" }}
+        whileHover={{ y: shouldReduce ? 0 : -2, scale: shouldReduce ? 1 : 1.02 }}
+        className="group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300"
+      >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-3">
           <span className="text-2xl">{skill.icon}</span>
-          <span className="text-blue-400 text-sm font-semibold">{skill.level}%</span>
           <span className="text-white font-medium">{skill.name}</span>
+          <span className="text-blue-400 text-sm font-semibold">{skill.level}%</span>
         </div>
       </div>
       
       {/* Progress Bar */}
-      <div className="h-2 bg-slate-800 rounded-full overflow-hidden mb-3">
+      <div className="h-2 bg-slate-700 rounded-full overflow-hidden mb-3">
         <motion.div
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${skill.level}%` } : {}}
-          transition={{ duration: 1, delay: 0.5 + index * 0.05 }}
+          variants={shouldReduce ? {} : progressVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          transition={{ duration: shouldReduce ? 0 : 0.4, delay: shouldReduce ? 0 : 0.3 + index * 0.05, ease: "easeOut" }}
+          style={{ '--progress': `${skill.level}%` }}
           className={`h-full bg-gradient-to-r ${categoryColors[skill.category]} rounded-full`}
         />
       </div>
@@ -83,16 +114,18 @@ const Skills = () => {
         </span>
       </div>
     </motion.div>
-  );
+    );
+  });
 
   return (
     <section id="skills" className="section-padding section-light section-divider">
       <div className="container-tight">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          variants={shouldReduceMotion() ? {} : cardVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          transition={{ duration: shouldReduceMotion() ? 0 : 0.4, ease: "easeOut" }}
           className="text-center mb-20"
           ref={ref}
         >
@@ -159,6 +192,6 @@ const Skills = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Skills;

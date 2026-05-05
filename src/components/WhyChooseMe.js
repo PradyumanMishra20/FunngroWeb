@@ -63,7 +63,7 @@ const WhyChooseMe = () => {
   ];
 
   return (
-    <section id="why-choose-me" className="section-padding section-dark section-divider">
+    <section id="why-choose-me" className="pt-0 sm:pt-1 md:pt-2 lg:pt-2 pb-2 sm:pb-4 md:pb-6 lg:pb-8 section-dark section-divider">
       <div className="container-tight">
         {/* Section Header */}
         <motion.div
@@ -134,7 +134,7 @@ const WhyChooseMe = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16 relative overflow-hidden"
+          className="mb-1 relative overflow-hidden"
         >
           {/* Subtle Animated Background */}
           <div className="absolute inset-0 opacity-5">
@@ -329,7 +329,7 @@ const WhyChooseMe = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center"
+          className="text-center mt-16"
         >
           <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>

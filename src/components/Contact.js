@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import emailjs from '@emailjs/browser';
+
+// EmailJS Configuration
+const SERVICE_ID = "service_03w75yq";
+const TEMPLATE_ID = "template_tgp7lh9";
+const PUBLIC_KEY = "cIKru12ICQKpeeJtC";
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -16,6 +22,8 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(''); // 'success', 'error', ''
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -24,19 +32,113 @@ const Contact = () => {
     });
   };
 
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form data
+    if (!formData.name.trim()) {
+      setSubmitStatus('error');
+      setErrorMessage('Please enter your name.');
+      return;
+    }
+    
+    if (!validateEmail(formData.email)) {
+      setSubmitStatus('error');
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+    
+    if (!formData.message.trim()) {
+      setSubmitStatus('error');
+      setErrorMessage('Please enter your project details.');
+      return;
+    }
+    
     setIsSubmitting(true);
+    setSubmitStatus('');
+    setErrorMessage('');
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
-    setFormData({ name: '', email: '', project: '', message: '' });
-    setIsSubmitting(false);
-    
-    // Show success message (in real app, you'd handle this with state)
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    try {
+      // Prepare template params with EXACT field names matching EmailJS template
+      // IMPORTANT: These must match your EmailJS template variables exactly
+      const templateParams = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+        project: formData.project.trim() || "Not specified"
+      };
+      
+      // Comprehensive debugging
+      console.log('=== EMAILJS DEBUG INFO ===');
+      console.log('SERVICE_ID:', SERVICE_ID);
+      console.log('TEMPLATE_ID:', TEMPLATE_ID);
+      console.log('PUBLIC_KEY:', PUBLIC_KEY ? 'Present' : 'Missing');
+      console.log('Template Params:', templateParams);
+      console.log('All params have values:', Object.values(templateParams).every(val => val && val.trim()));
+      console.log('========================');
+      
+      // Validate templateParams before sending
+      Object.keys(templateParams).forEach(key => {
+        if (!templateParams[key] || templateParams[key].trim() === '') {
+          throw new Error(`Template parameter '${key}' is empty or missing`);
+        }
+      });
+      
+      // Send email using correct emailjs.send syntax
+      const response = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        PUBLIC_KEY
+      );
+      
+      console.log('EmailJS SUCCESS:', response);
+      console.log('Response status:', response.status);
+      console.log('Response text:', response.text);
+      
+      if (response.status === 200) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', project: '', message: '' });
+      } else {
+        throw new Error(`EmailJS returned status: ${response.status}, text: ${response.text}`);
+      }
+    } catch (error) {
+      console.error('=== EMAILJS ERROR DETAILS ===');
+      console.error('Full error object:', error);
+      console.error('Error text:', error.text || 'No error text available');
+      console.error('Error status:', error.status || 'No status available');
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('==========================');
+      
+      setSubmitStatus('error');
+      
+      // Specific error handling for common EmailJS issues
+      if (error.text) {
+        if (error.text.includes('The service ID is required')) {
+          setErrorMessage('EmailJS configuration error: Service ID is invalid or missing.');
+        } else if (error.text.includes('The template ID is required')) {
+          setErrorMessage('EmailJS configuration error: Template ID is invalid or missing.');
+        } else if (error.text.includes('The user ID is required')) {
+          setErrorMessage('EmailJS configuration error: Public Key is invalid or missing.');
+        } else if (error.text.includes('email')) {
+          setErrorMessage('Email validation failed. Please check the email address.');
+        } else if (error.text.includes('template')) {
+          setErrorMessage('Template error. Please check your EmailJS template variables.');
+        } else {
+          setErrorMessage(`EmailJS error: ${error.text}`);
+        }
+      } else {
+        setErrorMessage(`Failed to send message: ${error.message || 'Unknown error'}. Please try again later.`);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,6 +186,37 @@ const Contact = () => {
             className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-2xl p-8"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Success Message */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-green-500/20 border border-green-500/50 rounded-xl p-4 text-center"
+                >
+                  <div className="flex items-center justify-center space-x-2">
+                    <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-green-400 font-medium">Message sent successfully! I'll get back to you soon.</span>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 text-center"
+                >
+                  <div className="flex items-center justify-center space-x-2">
+                    <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-red-400 font-medium">{errorMessage}</span>
+                  </div>
+                </motion.div>
+              )}
               <div>
                 <label htmlFor="name" className="block text-white font-medium mb-2">
                   Your Name

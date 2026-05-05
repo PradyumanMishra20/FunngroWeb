@@ -10,10 +10,14 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
+import Modal from './components/Modal';
+import PrivacyPolicyContent from './components/PrivacyPolicyContent';
+import TermsContent from './components/TermsContent';
 import { navbarVariants } from './hooks/useScrollAnimation';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeModal, setActiveModal] = useState(null); // "privacy" | "terms" | null
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +47,7 @@ function App() {
 
   return (
     <motion.div 
-      className="min-h-screen bg-slate-950 text-white"
+      className="min-h-screen bg-slate-950 text-white overflow-x-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -65,7 +69,20 @@ function App() {
         <Skills />
         <Contact />
       </main>
-      <Footer />
+      <Footer 
+        onPrivacyClick={() => setActiveModal('privacy')}
+        onTermsClick={() => setActiveModal('terms')}
+      />
+      
+      {/* Modal System */}
+      <Modal 
+        isOpen={activeModal !== null}
+        onClose={() => setActiveModal(null)}
+        title={activeModal === 'privacy' ? 'Privacy Policy' : 'Terms of Service'}
+      >
+        {activeModal === 'privacy' && <PrivacyPolicyContent />}
+        {activeModal === 'terms' && <TermsContent />}
+      </Modal>
     </motion.div>
   );
 }

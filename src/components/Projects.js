@@ -1,31 +1,55 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { cardHoverVariants } from '../hooks/useScrollAnimation';
-import { getCaseStudyById } from '../data/caseStudies';
-import { getProjectImagesById } from '../data/projectImages';
 import CaseStudyModal from './CaseStudyModal';
 import ImageGalleryModal from './ImageGalleryModal';
 
-const ProjectCard = ({ project, isFeatured = false, onCaseStudyClick, onImageClick }) => {
-  const ref = React.useRef(null);
+// Performance optimization: Animation configs outside component
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.95 }
+};
+
+// Performance detection
+const isLowEndDevice = () => {
+  return navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+};
+
+const shouldReduceMotion = () => {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches || isLowEndDevice();
+};
+
+const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick, onImageClick }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    viewport: { once: true }
+  });
   
-  // Fallback description if none exists
-  const description = project.description || `Project built using ${project.tech.join(', ')}`;
+  // Memoize description to prevent unnecessary recalculations
+  const description = React.useMemo(() => 
+    project.description || `Project built using ${project.tech.join(', ')}`,
+    [project.description, project.tech]
+  );
   
+  const shouldReduce = shouldReduceMotion();
+
   return (
-    <motion.div
+    <motion.div 
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.2 }}
-      whileHover={{
-        y: -5,
-        transition: { type: "spring", stiffness: 300, damping: 30 }
-      }}
-      className={`group relative overflow-hidden bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl ${
-        isFeatured ? 'lg:col-span-2' : ''
-      }`}
+      variants={shouldReduce ? {} : cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      transition={{ duration: shouldReduce ? 0 : 0.3, ease: "easeOut" }}
+      whileHover={{ y: shouldReduce ? 0 : -3 }}
+      className={`group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/20 ${isFeatured ? 'lg:col-span-2' : ''}`}
     >
       {/* Project Image */}
       <div className={`relative ${isFeatured ? 'h-48 sm:h-56 md:h-64' : 'h-40 sm:h-48 md:h-56'} overflow-hidden rounded-t-2xl`}>
@@ -33,21 +57,23 @@ const ProjectCard = ({ project, isFeatured = false, onCaseStudyClick, onImageCli
           <img
             src={project.image}
             alt={project.imageAlt || project.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"
+            className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
             loading="lazy"
             decoding="async"
+            style={{ contentVisibility: 'auto' }}
             onError={(e) => {
-              // Fallback to neutral background if image fails to load
-              e.target.style.display = 'none';
-              e.target.parentElement.classList.add('bg-gradient-to-br', 'from-slate-800', 'to-slate-700');
-              e.target.parentElement.innerHTML = `<div class="flex items-center justify-center h-full text-white text-2xl font-bold">${project.title}</div>`;
+              // Optimized fallback - replace image with styled div
+              const fallback = document.createElement('div');
+              fallback.className = 'flex items-center justify-center h-full text-white text-2xl font-bold bg-gradient-to-br from-slate-800 to-slate-700';
+              fallback.textContent = project.title;
+              e.target.parentNode.replaceChild(fallback, e.target);
             }}
           />
           
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-t-2xl flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-t-2xl flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full flex items-center space-x-2">
+              <div className="bg-white/20 px-4 py-2 rounded-full flex items-center space-x-2">
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -92,9 +118,9 @@ const ProjectCard = ({ project, isFeatured = false, onCaseStudyClick, onImageCli
         <div className="flex flex-col gap-3">
           <motion.button
             onClick={() => onCaseStudyClick(project)}
-            className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1 text-center"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 text-center"
+            whileHover={{ scale: shouldReduce ? 1 : 1.02 }}
+            whileTap={{ scale: shouldReduce ? 1 : 0.98 }}
           >
             <span className="flex items-center justify-center space-x-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,12 +136,12 @@ const ProjectCard = ({ project, isFeatured = false, onCaseStudyClick, onImageCli
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 px-4 py-2 bg-white/10 border border-white/20 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/20 text-center"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: shouldReduce ? 1 : 1.02 }}
+              whileTap={{ scale: shouldReduce ? 1 : 0.98 }}
             >
               <span className="flex items-center justify-center space-x-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 <span>Code</span>
               </span>
@@ -127,8 +153,8 @@ const ProjectCard = ({ project, isFeatured = false, onCaseStudyClick, onImageCli
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 px-4 py-2 bg-white/10 border border-white/20 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/20 text-center"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: shouldReduce ? 1 : 1.02 }}
+                whileTap={{ scale: shouldReduce ? 1 : 0.98 }}
               >
                 <span className="flex items-center justify-center space-x-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,43 +169,43 @@ const ProjectCard = ({ project, isFeatured = false, onCaseStudyClick, onImageCli
       </div>
     </motion.div>
   );
-};
+});
 
-const Projects = () => {
+const Projects = React.memo(() => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+    viewport: { once: true }
   });
 
   const [selectedCaseStudy, setSelectedCaseStudy] = React.useState(null);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedProject, setSelectedProject] = React.useState(null);
+  const [isCaseStudyOpen, setIsCaseStudyOpen] = React.useState(false);
   const [isImageGalleryOpen, setIsImageGalleryOpen] = React.useState(false);
 
-  const handleCaseStudyClick = (project) => {
-    const caseStudy = getCaseStudyById(project.id);
-    if (caseStudy) {
-      setSelectedCaseStudy(caseStudy);
-      setIsModalOpen(true);
-    }
-  };
+  // Memoize callback functions
+  const handleCaseStudyClick = useCallback((project) => {
+    setSelectedProject(project);
+    setIsCaseStudyOpen(true);
+  }, []);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setSelectedCaseStudy(null), 300);
-  };
-
-  const handleImageClick = (project) => {
+  const handleImageClick = useCallback((project) => {
     setSelectedProject(project);
     setIsImageGalleryOpen(true);
-  };
+  }, []);
 
-  const closeImageGallery = () => {
+  const closeCaseStudy = useCallback(() => {
+    setIsCaseStudyOpen(false);
+    setTimeout(() => setSelectedProject(null), 300);
+  }, []);
+
+  const closeImageGallery = useCallback(() => {
     setIsImageGalleryOpen(false);
     setTimeout(() => setSelectedProject(null), 300);
-  };
+  }, []);
 
-  const projects = [
+  // Memoize projects data
+  const projects = useMemo(() => [
     {
       id: 1,
       title: 'proposalGen',
@@ -220,10 +246,10 @@ const Projects = () => {
       github: 'https://github.com/pradyumanmishra/FunngroWeb',
       featured: false,
     },
-  ];
+  ], []);
 
   return (
-    <section id="projects" className="section-padding section-dark section-divider">
+    <section id="projects" className="pt-2 sm:pt-4 md:pt-6 lg:pt-8 pb-0 sm:pb-1 md:pb-2 lg:pb-2 section-dark section-divider">
       <div className="container-tight" ref={ref}>
         {/* Section Header */}
         <motion.div
@@ -252,8 +278,7 @@ const Projects = () => {
             <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
           </div>
           <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            Every project delivers measurable business results. My clients see increased revenue, 
-            higher customer satisfaction, and streamlined operations that directly impact their bottom line.
+            A collection of projects I’ve built to solve real problems and improve user experience.
           </p>
         </motion.div>
 
@@ -303,9 +328,9 @@ const Projects = () => {
       
       {/* Case Study Modal */}
       <CaseStudyModal 
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        caseStudy={selectedCaseStudy}
+        isOpen={isCaseStudyOpen}
+        onClose={closeCaseStudy}
+        caseStudy={selectedProject}
       />
 
       {/* Image Gallery Modal */}
@@ -317,6 +342,6 @@ const Projects = () => {
       />
     </section>
   );
-};
+});
 
 export default Projects;

@@ -71,28 +71,28 @@ const Hero = () => {
       {/* Animated gradient blobs with parallax */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-gradient-to-r from-blue-600/15 to-cyan-600/15 rounded-full blur-3xl animate-pulse"
+          className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] max-w-[400px] max-h-[400px] bg-gradient-to-r from-blue-600/15 to-cyan-600/15 rounded-full blur-3xl animate-pulse"
           style={{
             x: mousePosition?.x * 30 || 0,
             y: (mousePosition?.y * 30 || 0) + (scrollY || 0) * 0.2
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-r from-purple-600/15 to-pink-600/15 rounded-full blur-3xl animate-pulse delay-1000"
+          className="absolute bottom-1/4 right-1/4 w-[45vw] h-[45vw] max-w-[300px] max-h-[300px] bg-gradient-to-r from-purple-600/15 to-pink-600/15 rounded-full blur-3xl animate-pulse delay-1000"
           style={{
             x: mousePosition?.x * 25 || 0,
             y: (mousePosition?.y * 25 || 0) + (scrollY || 0) * 0.4
           }}
         />
         <motion.div 
-          className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-gradient-to-r from-indigo-600/10 to-blue-600/10 rounded-full blur-3xl animate-pulse delay-500"
+          className="absolute top-1/2 left-1/2 w-[40vw] h-[40vw] max-w-[250px] max-h-[250px] bg-gradient-to-r from-indigo-600/10 to-blue-600/10 rounded-full blur-3xl animate-pulse delay-500"
           style={{
             x: mousePosition?.x * 15 || 0,
             y: (mousePosition?.y * 15 || 0) + (scrollY || 0) * 0.6
           }}
         />
         <motion.div 
-          className="absolute -top-10 right-1/3 w-[300px] h-[300px] bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-full blur-3xl animate-pulse delay-1500"
+          className="absolute -top-10 right-1/3 w-[25vw] h-[25vw] max-w-[150px] max-h-[150px] bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-full blur-3xl animate-pulse delay-1500"
           style={{
             x: mousePosition?.x * 35 || 0,
             y: (mousePosition?.y * 35 || 0) + (scrollY || 0) * 0.1

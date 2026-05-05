@@ -5,14 +5,14 @@ import { useScrollAnimation, fadeInUpVariants, slideInLeftVariants, slideInRight
 const About = () => {
   const { ref, controls } = useScrollAnimation();
 
-  const skills = [
-    { name: 'React/Next.js', level: 95, color: 'from-blue-500 to-cyan-500' },
-    { name: 'Node.js/Express', level: 90, color: 'from-green-500 to-emerald-500' },
-    { name: 'TypeScript', level: 85, color: 'from-blue-600 to-indigo-600' },
-    { name: 'PostgreSQL/MongoDB', level: 88, color: 'from-purple-500 to-pink-500' },
-    { name: 'AWS/Cloud', level: 82, color: 'from-orange-500 to-red-500' },
-    { name: 'UI/UX Design', level: 75, color: 'from-pink-500 to-rose-500' }
-  ];
+   const skills = [
+  { name: 'HTML/CSS', level: 85, color: 'from-orange-500 to-red-500' },
+  { name: 'JavaScript', level: 80, color: 'from-yellow-400 to-yellow-600' },
+  { name: 'React.js', level: 75, color: 'from-blue-500 to-cyan-500' },
+  { name: 'Tailwind CSS', level: 80, color: 'from-cyan-500 to-blue-500' },
+  { name: 'Git/GitHub', level: 70, color: 'from-gray-500 to-gray-700' },
+  { name: 'Basic Node.js', level: 60, color: 'from-green-500 to-emerald-500' }
+];
 
   const stats = [
     { number: '5+', label: 'Projects Built' },
@@ -205,7 +205,7 @@ const About = () => {
           whileHover={{ y: -2, transition: { duration: 0.2 } }}
         >
           <blockquote className="text-xl text-gray-300 italic max-w-3xl mx-auto">
-            "I solve business problems with software that works, scales, and delivers measurable results."
+            "I build clean, functional web apps that solve real problems and deliver a smooth user experience."
           </blockquote>
         </motion.div>
       </div>

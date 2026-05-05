@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Footer = () => {
+const Footer = ({ onPrivacyClick, onTermsClick }) => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
@@ -160,18 +160,18 @@ href: 'https://wa.me/918454894108',
               viewport={{ once: true }}
               className="flex space-x-6 text-sm"
             >
-              <a
-                href="#"
-                className="text-accent-tertiary hover:text-accent-primary transition-colors duration-200"
+              <button
+                onClick={onPrivacyClick}
+                className="text-accent-tertiary hover:text-accent-primary transition-colors duration-200 bg-transparent border-none cursor-pointer"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-accent-tertiary hover:text-accent-primary transition-colors duration-200"
+              </button>
+              <button
+                onClick={onTermsClick}
+                className="text-accent-tertiary hover:text-accent-primary transition-colors duration-200 bg-transparent border-none cursor-pointer"
               >
                 Terms of Service
-              </a>
+              </button>
             </motion.div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { cardHoverVariants } from '../hooks/useScrollAnimation';
 import CaseStudyModal from './CaseStudyModal';
 import ImageGalleryModal from './ImageGalleryModal';
+import { getProjectImagesById } from '../data/projectImages';
 
 // Performance optimization: Animation configs outside component
 const cardVariants = {

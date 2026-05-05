@@ -292,7 +292,7 @@ const Hero = () => {
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
                 />
-                <span className="text-gray-400 text-sm">1+ experience</span>
+                <span className="text-gray-400 text-sm">1+ year experience</span>
               </div>
               <div className="flex items-center space-x-2">
                 <motion.div 

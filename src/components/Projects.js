@@ -212,16 +212,6 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Valentine-',
-      description: 'A simple themed landing page built for design practice.',
-      tech: ['HTML', 'CSS', 'JavaScript'],
-      image: '/images/logo.png',
-      imageAlt: 'Valentine themed landing page',
-      github: 'https://github.com/pradyumanmishra/Valentine-',
-      featured: false,
-    },
-    {
-      id: 5,
       title: 'FunngroWeb',
       description: 'A responsive portfolio website built to showcase projects and skills with a clean and simple UI.',
       tech: ['React', 'CSS', 'JavaScript'],

@@ -65,30 +65,8 @@ export const caseStudies = {
     github: 'https://github.com/pradyumanmishra/teenlancer',
     liveDemo: 'https://pradyumanmishra20.github.io/teenlancer'
   },
-  4: {
+ 4: {
     id: 4,
-    title: 'Valentine-',
-    shortDescription: 'Themed landing page demonstrating modern web design capabilities',
-    heroImage: '/images/logo.png',
-    problem: 'Wanted to create a visually appealing themed landing page to practice advanced CSS techniques and animation skills while exploring romantic/valentine theme design patterns.',
-    solution: 'Designed and developed a romantic-themed landing page featuring animated hearts, gradient backgrounds, smooth transitions, and interactive elements. Focused on creating emotional connections through visual design while maintaining clean, semantic HTML structure.',
-    outcome: 'Successfully demonstrated advanced CSS animation techniques and responsive design principles. The page received positive feedback for creativity and technical execution in design communities.',
-    techStack: ['HTML5', 'CSS3', 'JavaScript', 'CSS Animations', 'Flexbox', 'Grid'],
-    keyFeatures: [
-      'Custom CSS animations for floating hearts and particles',
-      'Gradient backgrounds with animated color transitions',
-      'Interactive hover effects and micro-interactions',
-      'Fully responsive layout using CSS Grid and Flexbox',
-      'Typography animations and text effects',
-      'Optimized performance with CSS transforms'
-    ],
-    challenges: 'Creating smooth, performant animations without using JavaScript libraries. Relied on CSS animations and transforms for better performance and browser compatibility.',
-    results: 'Page achieved 60fps animations on modern browsers. Featured in CSS animation showcases. Demonstrated proficiency in advanced CSS techniques.',
-    github: 'https://github.com/pradyumanmishra/Valentine-',
-    liveDemo: null
-  },
- 5: {
-    id: 5,
     title: 'FunngroWeb',
     shortDescription: 'Professional portfolio website showcasing projects and technical expertise',
     heroImage: '/images/funngroWeb_home.png',
@@ -108,7 +86,7 @@ export const caseStudies = {
     results: 'Achieved 100/100 Lighthouse performance score. Reduced bounce rate to 25% compared to previous portfolio. Generated multiple high-value client leads within first month of launch.',
     github: 'https://github.com/pradyumanmishra/FunngroWeb',
     liveDemo: null
-  },
+  }
 };
 
 export const getCaseStudyById = (id) => {

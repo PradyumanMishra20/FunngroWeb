@@ -132,17 +132,6 @@ export const projectImages = {
         alt: 'FunngroWeb portfolio contact and footer'
       }  
     ]
-  },
-  5: { // Valentine-
-    title: 'Valentine-',
-    images: [
-      {
-        name: 'Logo',
-        path: '/images/logo.png',
-        description: 'Valentine themed project logo',
-        alt: 'Valentine project logo placeholder'
-      }
-    ]
   }
 };
 

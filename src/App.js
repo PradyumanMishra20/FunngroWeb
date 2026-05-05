@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Stats from './components/Stats';
-import Testimonials from './components/Testimonials';
 import WhyChooseMe from './components/WhyChooseMe';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
@@ -62,7 +61,6 @@ function App() {
         <About />
         <Stats />
         <Projects />
-        <Testimonials />
         <WhyChooseMe />
         <Skills />
         <Contact />

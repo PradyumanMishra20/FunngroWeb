@@ -15,10 +15,10 @@ const Hero = () => {
   const { glowRef, glowPosition, isVisible: glowVisible } = useCursorGlow(heroRef);
   
   // Text reveal hooks
-  const headlineText = "I Design and Build Responsive Web Applications That Actually Work In The Real World.";
+  const headlineText = "I design and build responsive web applications that actually work in the real world.";
   const { ref: headlineRef, controls: headlineControls, words: headlineWords, containerVariants: headlineContainerVariants, wordVariants: headlineWordVariants } = useTextReveal(headlineText, 0.05);
   
-  const subheadingText = "Focused on creating practical solutions through modern web development";
+  const subheadingText = "Focused on creating practical solutions using modern web technologies.";
   const { ref: subheadingRef, controls: subheadingControls, words: subheadingWords, containerVariants: subheadingContainerVariants, wordVariants: subheadingWordVariants } = useTextReveal(subheadingText, 0.08);
 
   const scrollToProjects = () => {

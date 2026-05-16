@@ -51,7 +51,11 @@ const Hero = () => {
 };`;
 
   return (
-    <section id="home" ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden section-medium">
+   <section
+  id="home"
+  ref={heroRef}
+  className="min-h-[115vh] sm:min-h-screen pt-[110px] sm:pt-[120px] md:pt-[130px] flex items-center justify-center relative overflow-hidden section-medium"
+>
       {/* Premium SaaS background with parallax */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/50 to-purple-950"
@@ -128,7 +132,7 @@ const Hero = () => {
         />
       )}
 
-      <div className="container-custom relative z-10" ref={ref}>
+      <div className="container-custom relative z-10 -mt-16 sm:-mt-8 md:-mt-16 lg:-mt-28 xl:-mt-28" ref={ref}>
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="text-center lg:text-left">

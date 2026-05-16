@@ -97,44 +97,9 @@ export const projectImages = {
         alt: 'teenlancer teen page with freelance jobs'
       }
     ]
-  },
-  4: { // FunngroWeb
-    title: 'FunngroWeb',
-    images: [
-      {
-        name: 'Home',
-        path: '/images/funngroWeb_home.png',
-        description: 'Portfolio website home page',
-        alt: 'FunngroWeb portfolio home page'
-      },
-      {
-        name: 'About',
-        path: '/images/funngroWeb_about.png',
-        description: 'Portfolio website about page',
-        alt: 'FunngroWeb portfolio about page'
-      },
-      {
-        name: 'Projects',
-        path: '/images/funngroWeb_project.png',
-        description: 'Portfolio website projects page',
-        alt: 'FunngroWeb portfolio projects page'
-      },
-      {
-        name: 'Choose Me',
-        path: '/images/funngroWeb_chooseme.png',
-        description: 'Portfolio website choose me page',
-        alt: 'FunngroWeb portfolio choose me page'
-      },
-      {
-        name: 'Contact And Footer',
-        path: '/images/funngroWeb_footer.png',
-        description: 'Portfolio website contact and footer',
-        alt: 'FunngroWeb portfolio contact and footer'
-      }  
-    ]
   }
 };
-
+ 
 export const getProjectImagesById = (id) => {
   return projectImages[id] || null;
 };

@@ -53,7 +53,7 @@ const About = () => {
         </motion.div>
 
         {/* Main Content with Photo */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+       <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-0">
           {/* Photo & Personal Info */}
           <motion.div
             variants={slideInLeftVariants}
@@ -119,7 +119,7 @@ const About = () => {
               initial="hidden"
               animate={controls}
               transition={{ delay: 0.4 }}
-              className="grid grid-cols-3 gap-8"
+             className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
             >
               {stats.map((stat, index) => (
                 <motion.div

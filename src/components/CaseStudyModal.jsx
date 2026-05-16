@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
+  // Debug: Log the received caseStudy data
+  console.log('CaseStudyModal received caseStudy:', caseStudy);
+
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -83,10 +86,10 @@ const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
                     transition={{ delay: 0.1 }}
                   >
                     <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                      {caseStudy.title}
+                      {caseStudy?.title || 'Project'}
                     </h1>
                     <p className="text-gray-400 text-lg">
-                      {caseStudy.shortDescription}
+                      {caseStudy?.shortDescription || ''}
                     </p>
                   </motion.div>
                 </div>
@@ -99,12 +102,18 @@ const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
                     transition={{ delay: 0.2 }}
                     className="relative overflow-hidden rounded-2xl bg-slate-900/50 border border-white/5"
                   >
-                    <img
-                      src={caseStudy.heroImage}
-                      alt={caseStudy.title}
-                      className="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
+                    {caseStudy?.heroImage ? (
+                      <img
+                        src={caseStudy.heroImage}
+                        alt={caseStudy?.title || 'Project'}
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-48 bg-slate-800 flex items-center justify-center text-gray-400">
+                        No image available
+                      </div>
+                    )}
                   </motion.div>
                 </div>
 
@@ -116,20 +125,26 @@ const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
                     transition={{ delay: 0.3 }}
                     className="space-y-8"
                   >
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-3">The Problem</h3>
-                      <p className="text-gray-300 leading-relaxed">{caseStudy.problem}</p>
-                    </div>
+                    {caseStudy?.problem && (
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-3">The Problem</h3>
+                        <p className="text-gray-300 leading-relaxed">{caseStudy.problem}</p>
+                      </div>
+                    )}
 
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-3">The Solution</h3>
-                      <p className="text-gray-300 leading-relaxed">{caseStudy.solution}</p>
-                    </div>
+                    {caseStudy?.solution && (
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-3">The Solution</h3>
+                        <p className="text-gray-300 leading-relaxed">{caseStudy.solution}</p>
+                      </div>
+                    )}
 
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-3">The Outcome</h3>
-                      <p className="text-gray-300 leading-relaxed">{caseStudy.outcome}</p>
-                    </div>
+                    {caseStudy?.outcome && (
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-3">The Outcome</h3>
+                        <p className="text-gray-300 leading-relaxed">{caseStudy.outcome}</p>
+                      </div>
+                    )}
                   </motion.div>
                 </div>
 
@@ -142,7 +157,7 @@ const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
                   >
                     <h3 className="text-xl font-semibold text-white mb-4">Tech Stack</h3>
                     <div className="flex flex-wrap gap-2">
-                      {caseStudy.techStack.map((tech, index) => (
+                      {caseStudy?.techStack?.map((tech, index) => (
                         <span
                           key={index}
                           className="px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-medium"
@@ -163,7 +178,7 @@ const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
                   >
                     <h3 className="text-xl font-semibold text-white mb-4">Key Features</h3>
                     <div className="grid sm:grid-cols-2 gap-4">
-                      {caseStudy.keyFeatures.map((feature, index) => (
+                      {caseStudy?.keyFeatures?.map((feature, index) => (
                         <div
                           key={index}
                           className="flex items-start space-x-3 p-4 bg-slate-900/30 rounded-xl border border-white/5"
@@ -230,21 +245,23 @@ const CaseStudyModal = ({ isOpen, onClose, caseStudy }) => {
                       </motion.a>
                     )}
 
-                    <motion.a
-                      href={caseStudy.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 px-6 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 text-center"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span className="flex items-center justify-center space-x-2">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                        </svg>
-                        <span>View Code</span>
-                      </span>
-                    </motion.a>
+                    {caseStudy?.github && (
+                      <motion.a
+                        href={caseStudy.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 px-6 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 text-center"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="flex items-center justify-center space-x-2">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          </svg>
+                          <span>View Code</span>
+                        </span>
+                      </motion.a>
+                    )}
                   </motion.div>
                 </div>
               </div>

@@ -63,14 +63,17 @@ const WhyChooseMe = () => {
   ];
 
   return (
-    <section id="why-choose-me" className="pt-0 sm:pt-1 md:pt-2 lg:pt-2 pb-2 sm:pb-4 md:pb-6 lg:pb-8 section-dark section-divider">
+    <section
+  id="why-choose-me"
+  className="py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 section-dark section-divider overflow-hidden"
+>
       <div className="container-tight">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
           ref={ref}
         >
           <h2 
@@ -98,7 +101,7 @@ const WhyChooseMe = () => {
         </motion.div>
 
         {/* Main Reasons Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-20">
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
@@ -197,7 +200,7 @@ const WhyChooseMe = () => {
           </motion.div>
 
           {/* Process Grid with Enhanced Animations */}
-          <div className="grid md:grid-cols-4 gap-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 relative z-10">
             {process.map((item, index) => (
               <motion.div
                 key={index}
@@ -213,7 +216,7 @@ const WhyChooseMe = () => {
                   scale: 1.02,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="relative group pt-8"
+                className="relative group pt-6 sm:pt-8"
               >
                 {/* Card Background with Hover Glow */}
                 <motion.div
@@ -261,7 +264,7 @@ const WhyChooseMe = () => {
                 </motion.div>
 
                 {/* Content with Micro Animations */}
-                <div className="px-6 pb-6 pt-8 relative z-10">
+                <div className="px-4 sm:px-6 pb-5 sm:pb-6 pt-6 sm:pt-8 relative z-10">
                   <motion.h4 
                     className="text-lg font-semibold text-white mb-3 text-center"
                     initial={{ opacity: 0, x: -20 }}
@@ -329,9 +332,9 @@ const WhyChooseMe = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-8">
+          <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 sm:p-6 lg:p-8">
             <h3 className="text-2xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               I focus on creating clean, functional applications and clear communication throughout the development process.

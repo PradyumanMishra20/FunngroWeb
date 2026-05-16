@@ -64,28 +64,6 @@ export const caseStudies = {
     results: 'Prototype achieved 90% satisfaction rate in testing. 75% of teen participants reported increased confidence in freelancing. Platform concept featured in local tech education initiatives.',
     github: 'https://github.com/pradyumanmishra/teenlancer',
     liveDemo: 'https://pradyumanmishra20.github.io/teenlancer'
-  },
- 4: {
-    id: 4,
-    title: 'FunngroWeb',
-    shortDescription: 'Professional portfolio website showcasing projects and technical expertise',
-    heroImage: '/images/funngroWeb_home.png',
-    problem: 'Needed a modern, professional online presence to showcase development work and attract potential clients. Existing portfolio solutions were either too template-based or required extensive customization to achieve the desired professional appearance.',
-    solution: 'Built a custom portfolio website from scratch using modern React development practices. Implemented smooth animations, responsive design, dark theme, and optimized performance. Created reusable components and a clean architecture for easy maintenance and updates.',
-    outcome: 'Successfully launched a professional portfolio that generated 15+ client inquiries in the first month. Achieved 95+ Lighthouse performance scores and positive feedback on user experience and design quality.',
-    techStack: ['React', 'Tailwind CSS', 'Framer Motion', 'React Intersection Observer', 'React Router'],
-    keyFeatures: [
-      'Smooth scroll animations and micro-interactions',
-      'Fully responsive design optimized for all devices',
-      'Dark theme with gradient accents and modern typography',
-      'Project filtering and categorization system',
-      'Contact form with validation and email integration',
-      'SEO optimization and accessibility features'
-    ],
-    challenges: 'Implementing smooth animations without compromising performance. Used Framer Motion with proper optimization techniques and lazy loading to maintain fast load times while providing engaging interactions.',
-    results: 'Achieved 100/100 Lighthouse performance score. Reduced bounce rate to 25% compared to previous portfolio. Generated multiple high-value client leads within first month of launch.',
-    github: 'https://github.com/pradyumanmishra/FunngroWeb',
-    liveDemo: null
   }
 };
 

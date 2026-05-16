@@ -5,6 +5,7 @@ import { cardHoverVariants } from '../hooks/useScrollAnimation';
 import CaseStudyModal from './CaseStudyModal';
 import ImageGalleryModal from './ImageGalleryModal';
 import { getProjectImagesById } from '../data/projectImages';
+import { getCaseStudyById } from '../data/caseStudies';
 
 // Performance optimization: Animation configs outside component
 const cardVariants = {
@@ -186,7 +187,8 @@ const Projects = React.memo(() => {
 
   // Memoize callback functions
   const handleCaseStudyClick = useCallback((project) => {
-    setSelectedProject(project);
+    const fullCaseStudy = getCaseStudyById(project.id);
+    setSelectedProject(fullCaseStudy);
     setIsCaseStudyOpen(true);
   }, []);
 
@@ -236,16 +238,6 @@ const Projects = React.memo(() => {
       imageAlt: 'Teen freelancing platform interface',
       github: 'https://github.com/pradyumanmishra/teenlancer',
       featured: true,
-    },
-    {
-      id: 4,
-      title: 'FunngroWeb',
-      description: 'A responsive portfolio website built to showcase projects and skills with a clean and simple UI.',
-      tech: ['React', 'CSS', 'JavaScript'],
-      image: '/images/funngroWeb_home.png',
-      imageAlt: 'Portfolio website showcase',
-      github: 'https://github.com/pradyumanmishra/FunngroWeb',
-      featured: false,
     },
   ], []);
 
@@ -298,22 +290,9 @@ const Projects = React.memo(() => {
             ))}
           </div>
           
-          {/* Second Row - 2 Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.slice(2, 4).map((project, index) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                isFeatured={false}
-                onCaseStudyClick={handleCaseStudyClick}
-                onImageClick={handleImageClick}
-              />
-            ))}
-          </div>
-          
-          {/* Third Row - 1 Full Width Project */}
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
-            {projects.slice(4, 5).map((project, index) => (
+          {/* Second Row - 1 Full Width Project */}
+           <div className="grid grid-cols-1 gap-8">
+            {projects.slice(2, 3).map((project) => (
               <ProjectCard 
                 key={project.id} 
                 project={project} 
@@ -323,6 +302,7 @@ const Projects = React.memo(() => {
               />
             ))}
           </div>
+          
         </div>
 
               </div>

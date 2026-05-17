@@ -129,7 +129,7 @@ const Hero = () => {
       )}
 
        <div ref={ref} className="container-custom relative z-10 mt-0 max-w-7xl mx-auto">
-         <div className="grid lg:grid-cols-2 gap-16 items-center">
+         <div className="grid min-[980px]:grid-cols-[1.1fr_0.9fr] gap-10 items-center max-w-7xl mx-auto">
           {/* Left Content */}
           <div className="text-center lg:text-left">
             {/* Bold headline with text reveal */}
@@ -307,13 +307,13 @@ const Hero = () => {
 
           {/* Right Content - Code Preview */}
           <motion.div
-            ref={containerRef}
-            variants={slideInRightVariants}
-            initial="hidden"
-            animate={controls}
-            transition={{ delay: 0.4 }}
-            className="hidden lg:block"
-          >
+           ref={containerRef}
+           variants={slideInRightVariants}
+           initial="hidden"
+           animate={controls}
+           transition={{ delay: 0.4 }}
+           className="hidden min-[980px]:block w-full max-w-[420px] lg:max-w-[520px]  xl:max-w-[600px] justify-self-end"
+           >
             <div className="relative">
               {/* Code window */}
               <div className="bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-2xl">

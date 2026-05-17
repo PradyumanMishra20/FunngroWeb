@@ -51,11 +51,7 @@ const Hero = () => {
 };`;
 
   return (
-   <section
-  id="home"
-  ref={heroRef}
-  className="min-h-[115vh] sm:min-h-screen pt-[110px] sm:pt-[120px] md:pt-[130px] flex items-center justify-center relative overflow-hidden section-medium"
->
+    <section id="home" ref={heroRef} className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-0  min-h-auto md:min-h-screen flex items-start md:items-center section-medium">
       {/* Premium SaaS background with parallax */}
       <motion.div 
         className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/50 to-purple-950"
@@ -132,8 +128,8 @@ const Hero = () => {
         />
       )}
 
-      <div className="container-custom relative z-10 -mt-16 sm:-mt-8 md:-mt-16 lg:-mt-28 xl:-mt-28" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+       <div ref={ref} className="container-custom relative z-10 mt-0 max-w-7xl mx-auto">
+         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left">
             {/* Bold headline with text reveal */}
@@ -388,13 +384,13 @@ const Hero = () => {
         </div>
 
         {/* Premium scroll indicator */}
-        <motion.div
+          <motion.div
           variants={fadeInUpVariants}
           initial="hidden"
           animate={controls}
           transition={{ delay: 0.9 }}
           className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-3 scroll-indicator-large-screen"
-        >
+         >
           <motion.span 
             className="text-gray-500 text-sm font-medium tracking-wide"
             animate={{ opacity: [0.5, 1, 0.5] }}

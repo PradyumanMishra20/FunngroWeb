@@ -49,10 +49,10 @@ const Navigation = ({ isScrolled }) => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-lg' 
-        : 'bg-transparent'
-    }`}>
+     isScrolled
+  ? 'bg-background-primary/80 backdrop-blur-xl border-b border-black/5 shadow-editorial'
+  : 'bg-transparent'
+      }`}>
       <div className="container-custom">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -72,7 +72,7 @@ const Navigation = ({ isScrolled }) => {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: "700",
                 letterSpacing: "-0.02em",
-                background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+                background: "linear-gradient(135deg, #6F7758 0%, #B08A3E 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text"
@@ -93,9 +93,9 @@ const Navigation = ({ isScrolled }) => {
                   scrollToSection(item.href);
                 }}
                 className={`font-medium transition-all duration-200 ${
-                  activeSection === item.name.toLowerCase() 
-                    ? 'text-blue-400' 
-                    : 'text-gray-300 hover:text-white'
+                 activeSection === item.name.toLowerCase()
+                   ? 'text-accent-gold'
+                   : 'text-text-secondary hover:text-text-primary'
                 }`}
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
@@ -108,7 +108,7 @@ const Navigation = ({ isScrolled }) => {
           {/* CTA Button */}
           <motion.button
             onClick={() => scrollToSection('#contact')}
-            className="hidden lg:block px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-1"
+            className="hidden lg:block px-6 py-3 bg-gradient-to-r from-accent-olive to-accent-gold text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_10px_40px_rgba(122,123,79,0.18)] hover:-translate-y-1"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -122,9 +122,9 @@ const Navigation = ({ isScrolled }) => {
             aria-label="Toggle menu"
           >
             <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
-              <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-text-primary transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-text-primary transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-text-primary transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </div>
           </button>
         </div>
@@ -136,22 +136,24 @@ const Navigation = ({ isScrolled }) => {
             opacity: isMobileMenuOpen ? 1 : 0,
             height: isMobileMenuOpen ? 'auto' : 0,
           }}
-          className="lg:hidden overflow-hidden bg-slate-900/95 backdrop-blur-md border-t border-white/10"
+          className="lg:hidden overflow-hidden bg-background-secondary/95 backdrop-blur-md border-t border-black/5"
         >
           <div className="py-6 px-4 space-y-3">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className={`relative block px-6 py-2 text-gray-300 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 ${
-                  activeSection === item.name.toLowerCase() ? 'text-blue-400 font-semibold bg-white/5' : ''
-                }`}
+               className={`relative block px-6 py-3 text-text-secondary hover:text-text-primary transition-all duration-300 rounded-2xl hover:bg-black/[0.03] ${
+  activeSection === item.name.toLowerCase()
+    ? 'text-accent-gold bg-black/[0.04] font-medium'
+    : ''
+}`}
                 whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {item.name}
                 <motion.div
-                  className="absolute bottom-1 left-6 right-6 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                  className="absolute bottom-1 left-6 right-6 h-px bg-gradient-to-r from-accent-olive via-accent-gold to-accent-olive rounded-full opacity-70"
                   initial={{ width: 0, left: '50%' }}
                   whileHover={{ width: '100%', left: 0 }}
                   transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -166,7 +168,7 @@ const Navigation = ({ isScrolled }) => {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
+              className="px-6 py-2 bg-gradient-to-r from-accent-olive to-accent-gold text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-editorial"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               animate={{
@@ -176,7 +178,7 @@ const Navigation = ({ isScrolled }) => {
               }}
             >
               <span className="relative z-10">Hire Me</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300" />
+             <div className="absolute inset-0 bg-gradient-to-r from-accent-olive/20 to-accent-gold/20 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-500" />
             </motion.button>
           </div>
         </motion.div>

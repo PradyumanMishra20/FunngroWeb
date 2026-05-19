@@ -46,12 +46,25 @@ function App() {
   }, []);
 
   return (
-    <motion.div 
-      className="min-h-screen bg-slate-950 text-white overflow-x-hidden"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
-    >
+  <motion.div 
+  className="min-h-screen text-[#181512] overflow-x-hidden bg-cover bg-center bg-fixed"
+  style={{ 
+    backgroundImage: `
+      linear-gradient(
+        rgba(244,239,230,0.55),
+        rgba(244,239,230,0.55)
+      ),
+      url('/images/mainbackground.png')
+    `,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#ece7dc'
+  }}
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7, ease: 'easeOut' }}
+>
       <ScrollProgress />
       <motion.div
         variants={navbarVariants}

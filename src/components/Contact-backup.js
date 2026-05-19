@@ -101,7 +101,7 @@ const Contact = () => {
       ),
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+   <section id="contact" className="section-padding bg-primary-bg section-divider">
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
@@ -111,17 +111,14 @@ const Contact = () => {
           className="text-center mb-20"
           ref={ref}
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-6 text-white">
-            Let's Build Something
-          </h2>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-medium tracking-[-0.03em] text-primary-text mb-6">
+  Let’s Build Something Meaningful
+</h2>
           <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
+           <div className="w-20 h-px bg-accent-gold mx-auto mb-8 opacity-70" />
           </div>
-          <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            Ready to bring your ideas to life? Whether you need a full-stack SaaS application, 
-            a stunning website, or technical consultation, I'm here to help you succeed.
+          <p className="text-secondary-text mt-8 max-w-3xl mx-auto text-lg leading-9 font-light">
+           Ready to bring an idea to life? Whether you need a thoughtful interface, a polished frontend, or a collaborative development partner, I’d love to hear what you’re working on.
           </p>
         </motion.div>
 
@@ -132,11 +129,11 @@ const Contact = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-2xl p-8"
+            className="bg-secondary-bg/85 backdrop-blur-sm rounded-[2rem] p-8 sm:p-10 shadow-[0_24px_80px_rgba(42,42,38,0.08)]"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-white font-medium mb-2">
+                <label htmlFor="name" className="block text-sm uppercase tracking-[0.14em] text-muted-text mb-3">
                   Your Name
                 </label>
                 <input

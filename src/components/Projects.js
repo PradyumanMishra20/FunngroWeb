@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { cardHoverVariants } from '../hooks/useScrollAnimation';
 import CaseStudyModal from './CaseStudyModal';
 import ImageGalleryModal from './ImageGalleryModal';
 import { getProjectImagesById } from '../data/projectImages';
@@ -51,7 +50,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
       animate={inView ? "visible" : "hidden"}
       transition={{ duration: shouldReduce ? 0 : 0.3, ease: "easeOut" }}
       whileHover={{ y: shouldReduce ? 0 : -3 }}
-      className={`group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/20 ${isFeatured ? 'lg:col-span-2' : ''}`}
+      className={`group relative bg-background-secondary border border-black/5 rounded-5xl overflow-hidden transition-all duration-700 hover:-translate-y-1 hover:shadow-editorial ${isFeatured ? 'lg:col-span-2' : ''}`}
     >
       {/* Project Image */}
       <div className={`relative ${isFeatured ? 'h-48 sm:h-56 md:h-64' : 'h-40 sm:h-48 md:h-56'} overflow-hidden rounded-t-2xl`}>
@@ -59,7 +58,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
           <img
             src={project.image}
             alt={project.imageAlt || project.title}
-            className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-[1.03]"
             loading="lazy"
             decoding="async"
             style={{ contentVisibility: 'auto' }}
@@ -87,7 +86,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
           {/* Featured Badge */}
           {project.featured && (
             <div className="absolute top-4 left-4 z-10">
-              <span className="px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-semibold rounded-full shadow-lg">
+              <span className="px-4 py-1.5 bg-accent-olive text-white text-[11px] tracking-[0.12em] uppercase rounded-full">
                 Featured
               </span>
             </div>
@@ -97,10 +96,10 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
 
       {/* Project Content */}
       <div className="p-6">
-        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{project.title}</h3>
+        <h3 className="font-display text-3xl text-text-primary mb-4 leading-tight">{project.title}</h3>
         
         {/* Description */}
-        <p className="text-gray-300 text-sm leading-relaxed mb-4">
+        <p className="text-text-secondary leading-relaxed mb-6">
           {description}
         </p>
 
@@ -109,7 +108,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
           {project.tech.map((tech, index) => (
             <span
               key={index}
-              className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs font-medium text-gray-300"
+              className="px-4 py-1.5 bg-background-primary border border-black/5 rounded-full text-xs tracking-wide text-text-secondary"
             >
               {tech}
             </span>
@@ -120,7 +119,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
         <div className="flex flex-col gap-3">
           <motion.button
             onClick={() => onCaseStudyClick(project)}
-            className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 text-center"
+            className="w-full px-5 py-3 bg-accent-olive text-white rounded-2xl transition-all duration-500 hover:bg-accent-gold text-center"
             whileHover={{ scale: shouldReduce ? 1 : 1.02 }}
             whileTap={{ scale: shouldReduce ? 1 : 0.98 }}
           >
@@ -137,7 +136,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 px-4 py-2 bg-white/10 border border-white/20 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/20 text-center"
+              className="flex-1 px-4 py-3 bg-background-primary border border-black/5 text-text-primary rounded-2xl transition-all duration-500 hover:bg-background-tertiary text-center"
               whileHover={{ scale: shouldReduce ? 1 : 1.02 }}
               whileTap={{ scale: shouldReduce ? 1 : 0.98 }}
             >
@@ -154,7 +153,7 @@ const ProjectCard = React.memo(({ project, isFeatured = false, onCaseStudyClick,
                 href={project.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-2 bg-white/10 border border-white/20 text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/20 text-center"
+                className="flex-1 px-4 py-3 bg-background-primary border border-black/5 text-text-primary rounded-2xl transition-all duration-500 hover:bg-background-tertiary text-center"
                 whileHover={{ scale: shouldReduce ? 1 : 1.02 }}
                 whileTap={{ scale: shouldReduce ? 1 : 0.98 }}
               >
@@ -242,7 +241,7 @@ const Projects = React.memo(() => {
   ], []);
 
   return (
-    <section id="projects" className="pt-2 sm:pt-4 md:pt-6 lg:pt-8 pb-0 sm:pb-1 md:pb-2 lg:pb-2 section-dark section-divider">
+    <section id="projects" className="py-24 section-light section-divider">
       <div className="container-tight" ref={ref}>
         {/* Section Header */}
         <motion.div
@@ -251,28 +250,26 @@ const Projects = React.memo(() => {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: "700",
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}
-          >
-            These Are Some of My Projects
-          </h2>
-          <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
-          </div>
-          <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            A collection of projects I’ve built to solve real problems and improve user experience.
-          </p>
+         <h2 className="font-display text-heading-1 text-text-primary mb-6 leading-tight">
+  These Are Some of My Projects
+</h2>
+
+<motion.div
+  className="w-20 h-px bg-accent-gold/50 mx-auto mb-6"
+  initial={{ width: 0, opacity: 0 }}
+  whileInView={{ width: 80, opacity: 1 }}
+  transition={{ duration: 1 }}
+/>
+
+<div className="flex items-center justify-center space-x-2">
+  <div className="w-8 h-px bg-gradient-to-r from-transparent to-accent-gold rounded-full" />
+  <div className="w-20 h-px bg-accent-gold rounded-full" />
+  <div className="w-8 h-px bg-gradient-to-r from-accent-gold to-transparent rounded-full" />
+</div>
+
+<p className="text-text-secondary mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
+  A collection of projects I’ve built to solve real problems and improve user experience.
+</p>
         </motion.div>
 
         {/* Projects Grid - 2-2-1 Layout Pattern */}

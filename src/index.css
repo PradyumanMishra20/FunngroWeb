@@ -3,237 +3,368 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Production-level CSS optimizations */
+/* ==========================================
+   GLOBAL FOUNDATION
+========================================== */
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Offset for fixed navbar */
+  scroll-padding-top: 80px;
 }
 
 body {
   width: 100%;
   overflow-x: hidden;
+  background: #E6E1D7;
+  color: #2A2A26;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #111111;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #6366F1;
-  border-radius: 4px;
-  transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #5558E3;
-}
-
-/* Custom scrollbar for modal */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.5);
-  border-radius: 3px;
-  transition: background 0.2s ease;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.7);
-}
-
-/* Selection color */
-::selection {
-  background: #6366F1;
-  color: white;
-}
-
-/* Focus styles - Production ready */
-.focus-visible:focus-visible {
-  outline: 2px solid #6366F1;
-  outline-offset: 2px;
-}
-
-/* Performance optimizations */
 * {
   box-sizing: border-box;
 }
 
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-/* Image optimization */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Consistent spacing system */
+/* ==========================================
+   ROOT DESIGN TOKENS
+========================================== */
+
 :root {
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;     /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;     /* 32px */
-  --spacing-2xl: 3rem;    /* 48px */
-  --spacing-3xl: 4rem;    /* 64px */
-  --spacing-4xl: 6rem;    /* 96px */
-  --spacing-5xl: 8rem;    /* 128px */
-  
-  --border-radius-sm: 0.375rem;  /* 6px */
-  --border-radius-md: 0.5rem;    /* 8px */
-  --border-radius-lg: 0.75rem;   /* 12px */
-  --border-radius-xl: 1rem;      /* 16px */
-  --border-radius-2xl: 1.5rem;   /* 24px */
-  --border-radius-3xl: 2rem;     /* 32px */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.75rem;
 }
 
-/* Gradient animation */
-.animated-gradient {
-  background: linear-gradient(135deg, #6366F1, #8B5CF6, #EC4899);
-  background-size: 200% 200%;
-  animation: gradientShift 8s ease infinite;
+/* ==========================================
+   TYPOGRAPHY
+========================================== */
+
+.font-space-grotesk-force {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
-/* Performance-optimized Card Styles */
-.card-hover {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-  position: relative;
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection {
+  background: rgba(176, 138, 62, 0.22);
+  color: #2A2A26;
 }
 
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.1);
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.card-hover::before {
+::-webkit-scrollbar-track {
+  background: #DDD7CB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(122, 123, 79, 0.55);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(122, 123, 79, 0.75);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(42, 42, 38, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(122, 123, 79, 0.35);
+  border-radius: 999px;
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.focus-visible:focus-visible {
+  outline: 2px solid rgba(176, 138, 62, 0.45);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   ATMOSPHERIC BACKGROUND
+========================================== */
+
+body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top right,
+      rgba(122, 123, 79, 0.06),
+      transparent 40%),
+    radial-gradient(circle at bottom left,
+      rgba(176, 138, 62, 0.05),
+      transparent 45%);
+  z-index: -1;
 }
 
-.card-hover:hover::before {
-  opacity: 1;
-}
+/* ==========================================
+   BUTTONS
+========================================== */
 
-/* Consistent border radius system */
-.rounded-sm { border-radius: var(--border-radius-sm); }
-.rounded-md { border-radius: var(--border-radius-md); }
-.rounded-lg { border-radius: var(--border-radius-lg); }
-.rounded-xl { border-radius: var(--border-radius-xl); }
-.rounded-2xl { border-radius: var(--border-radius-2xl); }
-.rounded-3xl { border-radius: var(--border-radius-3xl); }
-
-/* Mobile-Optimized Premium Button Styles */
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-md hover:shadow-blue-500/10;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full
+         bg-dark-primary text-text-inverse
+         font-medium tracking-wide
+         transition-all duration-500;
+  box-shadow: 0 10px 30px rgba(27, 29, 24, 0.10);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(27, 29, 24, 0.14);
 }
 
 .btn-secondary {
-  @apply px-6 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-xl transition-all duration-200 hover:bg-white/20;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-full
+         bg-background-secondary/80
+         text-text-primary
+         border border-black/5
+         font-medium tracking-wide
+         transition-all duration-500;
+  backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
+  background: rgba(212, 206, 194, 0.85);
   transform: translateY(-1px);
 }
 
-/* Touch-friendly mobile button */
 .btn-mobile {
-  @apply px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 min-h-[44px] touch-manipulation;
+  @apply px-4 py-3 text-sm font-medium rounded-full
+         min-h-[44px] touch-manipulation;
 }
 
-/* Optimized Navigation Link Styles */
+/* ==========================================
+   NAVIGATION
+========================================== */
+
 .nav-link {
-  @apply text-gray-300 hover:text-white transition-colors duration-200 relative;
+  @apply relative text-text-secondary hover:text-text-primary
+         transition-colors duration-500;
 }
 
 .nav-link::after {
   content: '';
-  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-200;
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 0;
+  height: 1px;
+  background: rgba(176, 138, 62, 0.6);
+  transition: width 0.5s ease;
 }
 
 .nav-link:hover::after {
-  @apply w-full;
+  width: 100%;
 }
 
-/* Enhanced Section spacing */
+/* ==========================================
+   CARD SYSTEM
+========================================== */
+
+.card-hover {
+  position: relative;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.6s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 60px rgba(42, 42, 38, 0.08);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(243, 239, 231, 0.18),
+      rgba(122, 123, 79, 0.04)
+    );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================
+   SECTION SPACING
+========================================== */
+
 .section-padding {
-  @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  @apply py-20 sm:py-28 lg:py-36;
 }
 
-/* Tighter section spacing for better flow */
 .section-padding-sm {
-  @apply py-8 sm:py-12 md:py-16 lg:py-20;
+  @apply py-16 sm:py-24 lg:py-28;
 }
 
-/* Mobile-optimized Container styles */
+.mobile-section-padding {
+  @apply py-16 px-4 sm:py-24 sm:px-6 lg:py-36 lg:px-8;
+}
+
+/* ==========================================
+   CONTAINERS
+========================================== */
+
 .container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16;
 }
 
-/* Tighter container for better visual density */
 .container-tight {
-  @apply max-w-7xl mx-auto px-2 sm:px-4 lg:px-6;
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Section dividers */
+/* ==========================================
+   BACKGROUND UTILITIES
+========================================== */
+
 .section-divider {
-  @apply border-t border-white/10;
+  @apply border-t border-black/5;
 }
 
-/* Performance-optimized Section Backgrounds */
 .section-dark {
-  @apply bg-slate-950;
+  @apply bg-dark-primary text-text-inverse;
 }
 
 .section-light {
-  @apply bg-slate-900/50;
+  @apply bg-background-secondary;
 }
 
 .section-medium {
-  @apply bg-slate-900/80;
+  @apply bg-background-tertiary;
 }
 
-/* Mobile-specific spacing utilities */
-.mobile-section-padding {
-  @apply py-12 px-4 sm:py-16 sm:px-6 lg:py-24 lg:px-8;
+/* ==========================================
+   TEXT UTILITIES
+========================================== */
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    #2A2A26 0%,
+    #7A7B4F 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+/* ==========================================
+   FORMS
+========================================== */
+
+.form-input {
+  @apply w-full px-5 py-4 rounded-2xl
+         bg-background-secondary/70
+         border border-black/5
+         text-text-primary
+         placeholder:text-text-muted
+         transition-all duration-500
+         focus:outline-none;
+  backdrop-filter: blur(8px);
+}
+
+.form-input:focus {
+  border-color: rgba(176, 138, 62, 0.25);
+  box-shadow: 0 0 0 4px rgba(176, 138, 62, 0.08);
+}
+
+/* ==========================================
+   TESTIMONIALS
+========================================== */
+
+.testimonial-card {
+  @apply rounded-3xl p-6
+         bg-background-secondary/70
+         border border-black/5
+         transition-all duration-500;
+  backdrop-filter: blur(8px);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 60px rgba(42, 42, 38, 0.08);
+}
+
+/* ==========================================
+   ACHIEVEMENTS
+========================================== */
+
+.achievement-metric {
+  @apply text-center p-4 transition-all duration-500;
+}
+
+.achievement-metric:hover {
+  transform: translateY(-2px);
+}
+
+.achievement-number {
+  @apply block text-3xl font-medium text-accent-gold mb-2;
+}
+
+.achievement-label {
+  @apply text-sm tracking-wide text-text-muted uppercase;
+}
+
+/* ==========================================
+   SCROLL INDICATOR
+========================================== */
+
+.scroll-indicator {
+  @apply left-1/2 -translate-x-1/2;
+  position: relative;
+}
+
+/* ==========================================
+   RESPONSIVE HELPERS
+========================================== */
 
 .mobile-card-padding {
   @apply p-4 sm:p-6 lg:p-8;
@@ -243,84 +374,60 @@ img {
   @apply space-y-4 sm:space-y-6 lg:space-y-8;
 }
 
-/* Text gradient */
-.text-gradient {
-  background: linear-gradient(135deg, #6366F1, #8B5CF6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-hover:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .testimonial-card:hover,
+  .achievement-metric:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
 }
 
-/* Optimized Project Card Styles */
-.project-card:hover {
-  @apply border-blue-400/30 shadow-lg;
-  transform: translateY(-2px);
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+  .nav-link::after {
+    display: none;
+  }
+
+  .card-hover:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .testimonial-card:hover,
+  .achievement-metric:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
+@media (max-width: 640px) {
+  .btn-primary,
+  .btn-secondary {
+    @apply px-4 py-2 text-sm;
+  }
 }
 
-.project-card:hover::before {
-  opacity: 1;
-}
+/* ==========================================
+   SCROLL INDICATOR RESPONSIVE
+========================================== */
 
-/* Scroll indicator */
-.scroll-indicator {
-  @apply left-1/2 transform -translate-x-1/2 animate-bounce;
-  position: relative;
-}
-
-/* Performance-optimized Form Input Styles */
-.form-input {
-  @apply w-full px-4 py-3 bg-slate-800/60 border border-white/10 rounded-xl text-white placeholder-gray-400 transition-all duration-200 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400/20;
-}
-
-.form-input:focus {
-  transform: translateY(-1px);
-}
-
-/* Optimized Testimonial Card */
-.testimonial-card {
-  @apply bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-white/10 rounded-xl p-6 transition-all duration-200 hover:border-white/20;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-1px);
-}
-
-/* Performance-optimized Achievement Metrics */
-.achievement-metric {
-  @apply text-center p-4 transition-all duration-200;
-}
-
-.achievement-metric:hover {
-  transform: translateY(-1px);
-}
-
-.achievement-number {
-  @apply block text-3xl font-bold text-brand-primary mb-2;
-}
-
-.achievement-label {
-  @apply text-sm text-accent-secondary;
-}
-
-/* Force Space Grotesk for hero heading */
-.font-space-grotesk-force {
-  font-family: 'Space Grotesk', system-ui, sans-serif !important;
-}
-
-/* Custom media query for scroll indicator at 1000px */
 @media (max-width: 999px) {
   .scroll-indicator-large-screen {
     display: none !important;
@@ -333,84 +440,12 @@ img {
     left: 50% !important;
     transform: translateX(-50%) !important;
   }
-  
+
   .scroll-indicator-text-responsive {
     font-size: 14px !important;
   }
-  
+
   .scroll-indicator-arrow-responsive {
     height: 80px !important;
-  }
-}
-
-/* Performance and Mobile Optimizations */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .card-hover:hover {
-    transform: none !important;
-  }
-  
-  .btn-primary:hover,
-  .btn-secondary:hover {
-    transform: none !important;
-  }
-  
-  .achievement-metric:hover,
-  .testimonial-card:hover {
-    transform: none !important;
-  }
-}
-
-/* Mobile optimization */
-@media (max-width: 768px) {
-  .card-hover {
-    transition: none !important;
-  }
-  
-  .card-hover:hover {
-    transform: none !important;
-    box-shadow: none !important;
-  }
-  
-  .btn-primary:hover,
-  .btn-secondary:hover {
-    transform: none !important;
-    box-shadow: none !important;
-  }
-  
-  .nav-link::after {
-    display: none !important;
-  }
-  
-  .animated-gradient {
-    animation: none !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .btn-primary {
-    @apply px-4 py-2 text-sm;
-  }
-  
-  .btn-secondary {
-    @apply px-4 py-2 text-sm;
-  }
-  
-  /* Disable all hover effects on mobile */
-  .card-hover:hover,
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .testimonial-card:hover,
-  .achievement-metric:hover {
-    transform: none !important;
-    box-shadow: none !important;
   }
 }

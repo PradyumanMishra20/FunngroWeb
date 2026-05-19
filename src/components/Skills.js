@@ -67,12 +67,12 @@ const Skills = React.memo(() => {
   ], []);
 
   const categoryColors = useMemo(() => ({
-    Frontend: 'from-blue-400 to-cyan-400',
-    Backend: 'from-green-400 to-emerald-400',
-    Database: 'from-purple-400 to-pink-400',
-    Programming: 'from-indigo-400 to-purple-400',
-    Tools: 'from-gray-400 to-slate-400',
-  }), []);
+  Frontend: 'from-[#6F7758] to-[#8A9271]',
+  Backend: 'from-[#7A684E] to-[#B08A3E]',
+  Database: 'from-[#8C7B6A] to-[#B08A3E]',
+  Programming: 'from-[#5F6650] to-[#7A684E]',
+  Tools: 'from-[#8B857B] to-[#A39B8F]',
+}), []);
 
   // Memoize SkillCard component
   const SkillCard = React.memo(({ skill, index }) => {
@@ -85,18 +85,18 @@ const Skills = React.memo(() => {
         animate={inView ? "visible" : "hidden"}
         transition={{ duration: shouldReduce ? 0 : 0.3, delay: shouldReduce ? 0 : index * 0.05, ease: "easeOut" }}
         whileHover={{ y: shouldReduce ? 0 : -2, scale: shouldReduce ? 1 : 1.02 }}
-        className="group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-300"
+        className="group relative bg-background-secondary border border-black/5 rounded-4xl p-7 hover:-translate-y-1 hover:shadow-editorial transition-all duration-500"
       >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-3">
           <span className="text-2xl">{skill.icon}</span>
-          <span className="text-white font-medium">{skill.name}</span>
-          <span className="text-blue-400 text-sm font-semibold">{skill.level}%</span>
+         <span className="text-text-primary font-medium tracking-tight">{skill.name}</span>
+<span className="text-accent-gold text-sm font-semibold">{skill.level}%</span>
         </div>
       </div>
       
       {/* Progress Bar */}
-      <div className="h-2 bg-slate-700 rounded-full overflow-hidden mb-3">
+      <div className="h-1.5 bg-black/5 rounded-full overflow-hidden mb-4">
         <motion.div
           variants={shouldReduce ? {} : progressVariants}
           initial="hidden"
@@ -109,7 +109,7 @@ const Skills = React.memo(() => {
       
       {/* Category Badge */}
       <div className="absolute top-2 right-2">
-        <span className={`px-2 py-1 bg-gradient-to-r ${categoryColors[skill.category]} text-white text-xs font-medium rounded-full opacity-80`}>
+        <span className={`px-3 py-1 bg-gradient-to-r ${categoryColors[skill.category]} text-white text-[10px] tracking-[0.12em] uppercase rounded-full`}>
           {skill.category}
         </span>
       </div>
@@ -130,25 +130,22 @@ const Skills = React.memo(() => {
           ref={ref}
         >
           <h2 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight"
+            className="font-display text-heading-1 text-text-primary mb-6 leading-tight"
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: "700",
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}
+  fontFamily: "'Instrument Serif', serif",
+  fontWeight: "400",
+  letterSpacing: "-0.03em",
+}}
           >
             Skills I'm Building
           </h2>
-          <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
-          </div>
-          <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
+         <motion.div
+  className="w-20 h-px bg-accent-gold/50 mx-auto mb-8"
+  initial={{ width: 0, opacity: 0 }}
+  whileInView={{ width: 80, opacity: 1 }}
+  transition={{ duration: 1 }}
+/>
+          <p className="text-text-secondary max-w-2xl mx-auto text-body-large leading-relaxed">
             Skills I'm currently using and improving through real projects, 
             focused on clean code and practical problem-solving.
           </p>
@@ -175,15 +172,15 @@ const Skills = React.memo(() => {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-xl p-4 text-center hover:border-white/20 transition-all duration-300"
+              className="bg-background-secondary border border-black/5 rounded-3xl p-6 text-center hover:shadow-editorial transition-all duration-500"
             >
               <div className={`w-12 h-12 mx-auto mb-2 bg-gradient-to-r ${categoryColors[category]} rounded-full flex items-center justify-center`}>
                 <span className="text-white text-lg font-bold">
                   {category.charAt(0)}
                 </span>
               </div>
-              <h3 className="text-white font-semibold mb-1">{category}</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-text-primary font-medium mb-1">{category}</h3>
+<p className="text-text-muted text-sm">
                 {skills.filter(s => s.category === category).length} technologies
               </p>
             </motion.div>

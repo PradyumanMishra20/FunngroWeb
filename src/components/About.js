@@ -5,13 +5,13 @@ import { useScrollAnimation, fadeInUpVariants, slideInLeftVariants, slideInRight
 const About = () => {
   const { ref, controls } = useScrollAnimation();
 
-   const skills = [
-  { name: 'HTML/CSS', level: 85, color: 'from-orange-500 to-red-500' },
-  { name: 'JavaScript', level: 80, color: 'from-yellow-400 to-yellow-600' },
-  { name: 'React.js', level: 75, color: 'from-blue-500 to-cyan-500' },
-  { name: 'Tailwind CSS', level: 80, color: 'from-cyan-500 to-blue-500' },
-  { name: 'Git/GitHub', level: 70, color: 'from-gray-500 to-gray-700' },
-  { name: 'Basic Node.js', level: 60, color: 'from-green-500 to-emerald-500' }
+  const skills = [
+  { name: 'HTML/CSS', level: 85 },
+  { name: 'JavaScript', level: 80 },
+  { name: 'React.js', level: 75 },
+  { name: 'Tailwind CSS', level: 80 },
+  { name: 'Git/GitHub', level: 70 },
+  { name: 'Basic Node.js', level: 60 }
 ];
 
   const stats = [
@@ -21,53 +21,46 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding section-light section-divider">
+    <section id="about" className="section-padding pt-8 section-light section-divider relative overflow-hidden">
       <div className="container-tight" ref={ref}>
         {/* Section Header */}
         <motion.div
-          variants={fadeInUpVariants}
-          initial="hidden"
-          animate={controls}
-          className="text-center mb-20"
-        >
-          <h2 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: "700",
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}
-          >
-            About Me
-          </h2>
-          <motion.div 
-            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: 96 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          />
-        </motion.div>
+  variants={fadeInUpVariants}
+  initial="hidden"
+  animate={controls}
+  className="text-center mb-12"
+>
+  <p className="text-ui uppercase tracking-[0.24em] text-text-muted mb-6">
+    Introduction
+  </p>
 
+ <h3 className="font-display text-heading-1 text-text-primary mb-6 leading-tight">
+  Crafting thoughtful digital experiences.
+</h3>
+
+  <motion.div
+    className="w-20 h-px bg-accent-gold/50 mx-auto"
+    initial={{ width: 0, opacity: 0 }}
+    animate={{ width: 80, opacity: 1 }}
+    transition={{ duration: 1.2, delay: 0.4 }}
+  />
+</motion.div>
         {/* Main Content with Photo */}
-       <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-0">
+       <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center mb-8 sm:mb-10 lg:mb-14 px-4 sm:px-0">
           {/* Photo & Personal Info */}
           <motion.div
             variants={slideInLeftVariants}
             initial="hidden"
             animate={controls}
             transition={{ delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-6"
           >
             {/* Photo */}
             <div className="relative group">
               <motion.div
-                className="relative w-64 h-64 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10"
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                transition={{ duration: 0.3 }}
+                className="relative w-72 h-80 mx-auto lg:mx-0 rounded-5xl overflow-hidden bg-background-tertiary border border-black/5 shadow-cinematic"
+                whileHover={{ y: -4 }}
+transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               >
                 <img
                   src="/images/profilePic.jpeg"
@@ -83,7 +76,7 @@ const About = () => {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+               <div className="absolute inset-0 bg-gradient-to-t from-dark-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </motion.div>
             </div>
 
@@ -103,11 +96,11 @@ const About = () => {
               >
                 About Me
               </h3>
-              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              <p className="text-body-large text-text-secondary leading-relaxed mb-6">
                 I'm a passionate web developer focused on creating modern, responsive applications that solve real problems. 
                 I love turning ideas into functional products that users enjoy interacting with.
               </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-body-large text-text-secondary leading-relaxed">
                 Currently exploring new technologies and building projects that challenge me to grow as a developer. 
                 I believe in clean code, user-centered design, and continuous learning.
               </p>
@@ -128,13 +121,13 @@ const About = () => {
                   className="text-center"
                 >
                   <motion.div 
-                    className="text-3xl sm:text-4xl font-bold text-white mb-2"
+                    className="font-display text-4xl sm:text-5xl font-medium text-accent-gold mb-3"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
                     {stat.number}
                   </motion.div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-ui uppercase tracking-[0.16em] text-text-muted">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -150,20 +143,9 @@ const About = () => {
             transition={{ delay: 0.4 }}
             className="space-y-6"
           >
-            <h3 
-                className="text-2xl sm:text-3xl font-bold mb-8 leading-tight"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: "700",
-                  letterSpacing: "-0.02em",
-                  background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
-              >
-                Technologies That Deliver Results
-              </h3>
+           <h3 className="font-display text-heading-1 text-text-primary mb-10 leading-tight">
+  Technologies That Deliver Results
+</h3>
             <motion.div variants={staggerContainerVariants} initial="hidden" animate={controls}>
               {skills.map((skill, index) => (
                 <motion.div
@@ -172,21 +154,21 @@ const About = () => {
                   className="space-y-2"
                 >
                   <div className="flex justify-between items-center">
-                    <span className="text-white font-medium">{skill.name}</span>
+                    <span className="text-text-primary font-medium">{skill.name}</span>
                     <motion.span 
-                      className="text-gray-400 text-sm"
+                      className="text-text-muted text-sm"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
                       {skill.level}%
                     </motion.span>
                   </div>
-                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                 <div className="h-1.5 bg-black/6 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
+                      className="h-full rounded-full bg-gradient-to-r from-accent-olive to-accent-gold"
                     />
                   </div>
                 </motion.div>
@@ -201,10 +183,10 @@ const About = () => {
           initial="hidden"
           animate={controls}
           transition={{ delay: 1 }}
-          className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-8 text-center"
-          whileHover={{ y: -2, transition: { duration: 0.2 } }}
+         className="bg-background-secondary/80 border border-black/5 rounded-5xl p-10 sm:p-14 text-center shadow-editorial"
+whileHover={{ y: -2, transition: { duration: 0.8 } }}
         >
-          <blockquote className="text-xl text-gray-300 italic max-w-3xl mx-auto">
+          <blockquote className="font-display text-2xl sm:text-3xl italic text-text-secondary leading-relaxed max-w-4xl mx-auto">
             "I build clean, functional web apps that solve real problems and deliver a smooth user experience."
           </blockquote>
         </motion.div>

@@ -110,7 +110,7 @@ const Modal = ({ isOpen, onClose, children, title = "" }) => {
           animate="visible"
           exit="exit"
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          className="absolute inset-0 bg-dark-primary/50 backdrop-blur-soft"
           onClick={onClose}
           aria-hidden="true"
         />
@@ -126,21 +126,21 @@ const Modal = ({ isOpen, onClose, children, title = "" }) => {
             duration: 0.4,
             ease: "easeOut"
           }}
-          className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl shadow-2xl border border-white/10 overflow-hidden focus:outline-none"
+          className="relative w-full max-w-4xl max-h-[90vh] bg-dark-primary/95 border border-black/10 rounded-2xl shadow-2xl overflow-hidden focus:outline-none"
           role="dialog"
           aria-modal="true"
           aria-labelledby={title ? "modal-title" : undefined}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-white/10">
+          <div className="flex items-center justify-between p-6 border-b border-black/10">
             {title && (
-              <h2 id="modal-title" className="text-2xl font-bold text-white">
+              <h2 id="modal-title" className="text-2xl font-bold text-text-primary">
                 {title}
               </h2>
             )}
             <button
               onClick={onClose}
-              className="p-2 text-gray-400 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              className="p-2 text-text-muted hover:text-text-primary transition-colors duration-200 rounded-lg hover:bg-background-secondary/40 focus:outline-none focus:ring-2 focus:ring-accent-gold/20"
               aria-label="Close modal"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

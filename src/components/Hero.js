@@ -15,7 +15,7 @@ const Hero = () => {
   const { glowRef, glowPosition, isVisible: glowVisible } = useCursorGlow(heroRef);
   
   // Text reveal hooks
-  const headlineText = "I design and build responsive web applications that actually work in the real world.";
+  const headlineText ="Building clean, functional web interfaces with real-world focus.";
   const { ref: headlineRef, controls: headlineControls, words: headlineWords, containerVariants: headlineContainerVariants, wordVariants: headlineWordVariants } = useTextReveal(headlineText, 0.05);
   
   const subheadingText = "Focused on creating practical solutions using modern web technologies.";
@@ -41,75 +41,16 @@ const Hero = () => {
     }
   };
 
-  const codeSnippet = `const buildSaaS = () => {
-  return {
-    frontend: ['React', 'Next.js', 'TypeScript'],
-    backend: ['Node.js', 'PostgreSQL', 'Redis'],
-    features: ['AI Integration', 'Real-time Analytics'],
-    result: 'High-converting web applications'
-  }
-};`;
 
   return (
-    <section id="home" ref={heroRef} className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-0  min-h-auto md:min-h-screen flex items-start md:items-center section-medium">
+   <section id="home" ref={heroRef} className="relative overflow-hidden section-light min-h-screen flex items-center pt-28 sm:pt-32 lg:pt-0 pb-32 lg:pb-40">
       {/* Premium SaaS background with parallax */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/50 to-purple-950"
-        style={{
-          x: mousePosition?.x * 20 || 0,
-          y: (mousePosition?.y * 20 || 0) + (scrollY || 0) * 0.3
-        }}
-      />
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-t from-blue-900/30 via-transparent to-purple-900/30"
-        style={{
-          x: mousePosition?.x * 10 || 0,
-          y: (mousePosition?.y * 10 || 0) + (scrollY || 0) * 0.5
-        }}
-      />
+      {/* Background */}
+<div className="absolute inset-0 bg-background-primary" />
+<div className="absolute inset-0 opacity-30">
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-accent-gold/10 blur-3xl rounded-full" />
+</div>
       
-      {/* Animated gradient blobs with parallax */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
-          className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] max-w-[400px] max-h-[400px] bg-gradient-to-r from-blue-600/15 to-cyan-600/15 rounded-full blur-3xl animate-pulse"
-          style={{
-            x: mousePosition?.x * 30 || 0,
-            y: (mousePosition?.y * 30 || 0) + (scrollY || 0) * 0.2
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-[45vw] h-[45vw] max-w-[300px] max-h-[300px] bg-gradient-to-r from-purple-600/15 to-pink-600/15 rounded-full blur-3xl animate-pulse delay-1000"
-          style={{
-            x: mousePosition?.x * 25 || 0,
-            y: (mousePosition?.y * 25 || 0) + (scrollY || 0) * 0.4
-          }}
-        />
-        <motion.div 
-          className="absolute top-1/2 left-1/2 w-[40vw] h-[40vw] max-w-[250px] max-h-[250px] bg-gradient-to-r from-indigo-600/10 to-blue-600/10 rounded-full blur-3xl animate-pulse delay-500"
-          style={{
-            x: mousePosition?.x * 15 || 0,
-            y: (mousePosition?.y * 15 || 0) + (scrollY || 0) * 0.6
-          }}
-        />
-        <motion.div 
-          className="absolute -top-10 right-1/3 w-[25vw] h-[25vw] max-w-[150px] max-h-[150px] bg-gradient-to-r from-green-600/10 to-emerald-600/10 rounded-full blur-3xl animate-pulse delay-1500"
-          style={{
-            x: mousePosition?.x * 35 || 0,
-            y: (mousePosition?.y * 35 || 0) + (scrollY || 0) * 0.1
-          }}
-        />
-      </div>
-
-      {/* Code pattern overlay with parallax */}
-      <motion.div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-          x: mousePosition?.x * 5 || 0,
-          y: (mousePosition?.y * 5 || 0) + (scrollY || 0) * 0.8
-        }}
-      />
-
       {/* Cursor glow effect */}
       {glowVisible && (
         <motion.div
@@ -118,7 +59,7 @@ const Hero = () => {
           style={{
             left: (glowPosition?.x || 0) - 192,
             top: (glowPosition?.y || 0) - 192,
-            background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)',
+           background: 'radial-gradient(circle, rgba(176, 138, 62, 0.08) 0%, transparent 70%)',
             filter: 'blur(40px)'
           }}
           initial={{ opacity: 0 }}
@@ -141,30 +82,24 @@ const Hero = () => {
               transition={{ delay: 0.1 }}
               className="mb-6"
             >
-              <h1 
-                className="text-center font-bold mb-6 leading-tight text-white"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: "700",
-                  fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
-                  letterSpacing: "-0.02em",
-                  lineHeight: "1.2"
-                }}
-              >
-                {headlineWords.map((word, index) => (
-                  <motion.span
-                    key={index}
-                    variants={headlineWordVariants}
-                    className="inline-block mr-2"
-                  >
-                    {word}
-                    {index === 6 && (
-                      <span className="block text-gradient bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                        {headlineWords.slice(7, 10).join(' ')}
-                      </span>
-                    )}
-                  </motion.span>
-                ))}
+              <h1 className="font-display text-heading-2 text-text-primary text-center lg:text-left mb-6 leading-tight">
+               {headlineWords.map((word, index) => {
+  const isHighlighted = index >= 6 && index <= 9;
+
+  return (
+    <motion.span
+      key={index}
+      variants={headlineWordVariants}
+      className={
+        isHighlighted
+          ? "text-accent-gold font-semibold inline-block mr-2"
+          : "inline-block mr-2"
+      }
+    >
+      {word}
+    </motion.span>
+  );
+})}
               </h1>
             </motion.div>
 
@@ -177,7 +112,7 @@ const Hero = () => {
               transition={{ delay: 0.3 }}
               className="mb-8"
             >
-              <p className="text-xl sm:text-2xl text-blue-300 font-medium leading-relaxed">
+              <p className="text-body-large text-text-secondary max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 {subheadingWords.map((word, index) => (
                   <motion.span
                     key={index}
@@ -201,7 +136,7 @@ const Hero = () => {
               <motion.button
                 ref={magneticRef1}
                 onClick={scrollToProjects}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-1 text-lg overflow-hidden"
+                className="btn-primary relative overflow-hidden"
                 variants={buttonHoverVariants}
                 whileHover="hover"
                 whileTap="tap"
@@ -213,17 +148,7 @@ const Hero = () => {
               >
                 {/* Animated gradient background */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 opacity-0 group-hover:opacity-100"
-                  animate={{
-                    x: isHovered1 ? [0, 100, 0] : 0,
-                  }}
-                  transition={{
-                    x: {
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }
-                  }}
+                  className="absolute inset-0 bg-accent-olive/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
                 <span className="relative z-10 flex items-center space-x-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,12 +157,12 @@ const Hero = () => {
                   </svg>
                   <span>View My Work</span>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-accent-olive to-accent-gold rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.button>
               <motion.button
                 ref={magneticRef2}
                 onClick={scrollToContact}
-                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/30 hover:shadow-xl hover:-translate-y-1 text-lg overflow-hidden"
+                className="btn-secondary relative overflow-hidden"
                 variants={buttonHoverVariants}
                 whileHover="hover"
                 whileTap="tap"
@@ -248,19 +173,9 @@ const Hero = () => {
                 }}
               >
                 {/* Animated gradient background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100"
-                  animate={{
-                    x: isHovered2 ? [0, -100, 0] : 0,
-                  }}
-                  transition={{
-                    x: {
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }
-                  }}
-                />
+                  <motion.div
+                   className="absolute inset-0 bg-accent-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  />
                 <span className="relative z-10 flex items-center space-x-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -280,27 +195,27 @@ const Hero = () => {
             >
               <div className="flex items-center space-x-2">
                 <motion.div 
-                  className="w-2 h-2 bg-green-400 rounded-full"
+                  className="w-2 h-2 bg-accent-olive rounded-full"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <span className="text-gray-400 text-sm">Available for hire</span>
+                <span className="text-text-muted text-sm">Available for hire</span>
               </div>
               <div className="flex items-center space-x-2">
                 <motion.div 
-                  className="w-2 h-2 bg-blue-400 rounded-full"
+                  className="w-2 h-2 bg-accent-brass rounded-fulll"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
                 />
-                <span className="text-gray-400 text-sm">Building real projects</span>
+                <span className="text-text-muted text-sm">Building real projects</span>
               </div>
               <div className="flex items-center space-x-2">
                 <motion.div 
-                  className="w-2 h-2 bg-purple-400 rounded-full"
+                 className="w-2 h-2 bg-accent-brass rounded-full"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 1 }}
                 />
-                <span className="text-gray-400 text-sm">Learning through practice</span>
+                <span className="text-text-muted text-sm">Learning through practice</span>
               </div>
             </motion.div>
           </div>
@@ -316,101 +231,139 @@ const Hero = () => {
            >
             <div className="relative">
               {/* Code window */}
-              <div className="bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+             <div className="bg-background-secondary/80 border border-black/5 rounded-5xl overflow-hidden shadow-editorial backdrop-blur-sm">
                 {/* Window header */}
-                <div className="flex items-center justify-between px-4 py-3 bg-slate-800/50 border-b border-white/5">
+                <div className="flex items-center justify-between px-6 py-5 border-b border-black/5">
                   <div className="flex items-center space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full" />
                     <div className="w-3 h-3 bg-yellow-500 rounded-full" />
                     <div className="w-3 h-3 bg-green-500 rounded-full" />
                   </div>
-                  <div className="text-gray-500 text-sm font-mono">buildSaaS.js</div>
+                  <div className="text-text-secondary text-sm tracking-wide font-medium">
+                    buildSaaS.js
+                  </div>
                   <div className="w-16" />
                 </div>
                 
                 {/* Code content */}
-                <div className="p-6">
-                  <pre className="text-sm text-gray-300 font-mono leading-relaxed">
+                <div className="p-8">
+                  <pre className="text-[15px] text-text-secondary font-mono leading-8">
                     <code>
-                      <span className="text-purple-400">const</span>
-                      <span className="text-blue-400"> buildSaaS</span>
-                      <span className="text-gray-400"> = () ={'>'} {'{'}</span>
+                      <span className="text-text-primary">const</span>
+                      <span className="text-accent-brass"> buildSaaS</span>
+                      <span className="text-text-muted"> = () ={'>'} {'{'}</span>
                       <br />
-                      <span className="ml-4 text-gray-400">return {'{'}</span>
+                      <span className="ml-4 text-text-muted">return {'{'}</span>
                       <br />
-                      <span className="ml-8 text-purple-400">frontend</span>
-                      <span className="text-gray-400">: [</span>
-                      <span className="text-green-400">'React'</span>
-                      <span className="text-gray-400">, </span>
-                      <span className="text-green-400">'Next.js'</span>
-                      <span className="text-gray-400">, </span>
-                      <span className="text-green-400">'TypeScript'</span>
-                      <span className="text-gray-400">],</span>
+                      <span className="ml-8 text-text-primary">frontend</span>
+                      <span className="text-text-muted">: [</span>
+                      <span className="text-accent-gold">'React'</span>
+                      <span className="text-text-muted">, </span>
+                      <span className="text-accent-gold">'Next.js'</span>
+                      <span className="text-text-muted">, </span>
+                      <span className="text-accent-gold">'TypeScript'</span>
+                      <span className="text-text-muted">],</span>
                       <br />
-                      <span className="ml-8 text-purple-400">backend</span>
-                      <span className="text-gray-400">: [</span>
-                      <span className="text-green-400">'Node.js'</span>
-                      <span className="text-gray-400">, </span>
-                      <span className="text-green-400">'PostgreSQL'</span>
-                      <span className="text-gray-400">, </span>
-                      <span className="text-green-400">'Redis'</span>
-                      <span className="text-gray-400">],</span>
+                      <span className="ml-8 text-text-primary">backend</span>
+                      <span className="text-text-muted">: [</span>
+                      <span className="text-accent-gold">'Node.js'</span>
+                      <span className="text-text-muted">, </span>
+                      <span className="text-accent-gold">'PostgreSQL'</span>
+                      <span className="text-text-muted">, </span>
+                      <span className="text-accent-gold">'Redis'</span>
+                      <span className="text-text-muted">],</span>
                       <br />
-                      <span className="ml-8 text-purple-400">features</span>
-                      <span className="text-gray-400">: [</span>
-                      <span className="text-green-400">'AI Integration'</span>
-                      <span className="text-gray-400">, </span>
-                      <span className="text-green-400">'Real-time Analytics'</span>
-                      <span className="text-gray-400">],</span>
+                      <span className="ml-8 text-text-primary">features</span>
+                      <span className="text-text-muted">: [</span>
+                      <span className="text-accent-gold">'AI Integration'</span>
+                      <span className="text-text-muted">, </span>
+                      <span className="text-accent-gold">'Real-time Analytics'</span>
+                      <span className="text-text-muted">],</span>
                       <br />
-                      <span className="ml-8 text-purple-400">result</span>
-                      <span className="text-gray-400">: </span>
-                      <span className="text-green-400">'High-converting web applications'</span>
+                      <span className="ml-8 text-text-primary">result</span>
+                      <span className="text-text-muted">: </span>
+                      <span className="text-accent-gold">'High-converting web applications'</span>
                       <br />
-                      <span className="ml-4 text-gray-400">{'}'}</span>
+                      <span className="ml-4 text-text-muted">{'}'}</span>
                       <br />
-                      <span className="text-gray-400">{'}'}</span>
+                      <span className="text-text-muted">{'}'}</span>
                     </code>
                   </pre>
                 </div>
               </div>
-
-              {/* Floating elements around code */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20 blur-xl animate-pulse" />
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full opacity-20 blur-xl animate-pulse delay-500" />
-              <div className="absolute top-1/2 -right-8 w-6 h-6 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full opacity-20 blur-xl animate-pulse delay-1000" />
             </div>
           </motion.div>
         </div>
 
-        {/* Premium scroll indicator */}
-          <motion.div
-          variants={fadeInUpVariants}
-          initial="hidden"
-          animate={controls}
-          transition={{ delay: 0.9 }}
-          className="absolute bottom-[-50px] left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-3 scroll-indicator-large-screen"
-         >
-          <motion.span 
-            className="text-gray-500 text-sm font-medium tracking-wide"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            SCROLL TO EXPLORE
-          </motion.span>
-          <motion.div 
-            className="w-px h-20 bg-gradient-to-b from-blue-400 to-transparent"
-            animate={{ height: [60, 80, 60] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.div>
-      </div>
+       {/* Premium scroll indicator */}
+<motion.div
+  variants={fadeInUpVariants}
+  initial="hidden"
+  animate={controls}
+  transition={{ delay: 0.9 }}
+  className="absolute bottom-[-190px] left-1/2 -translate-x-1/2 flex flex-col items-center space-y-3 scroll-indicator-large-screen"
+>
+  <motion.span
+    className="text-text-muted text-sm font-medium tracking-wide"
+    animate={{ opacity: [0.5, 1, 0.5] }}
+    transition={{ duration: 2, repeat: Infinity }}
+  >
+    SCROLL TO EXPLORE
+  </motion.span>
 
-      {/* Floating glass elements */}
-      <div className="absolute top-20 left-10 w-2 h-2 bg-blue-400/30 rounded-full blur-sm animate-pulse" />
-      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-400/30 rounded-full blur-sm animate-pulse delay-500" />
-      <div className="absolute bottom-20 left-20 w-2 h-2 bg-cyan-400/30 rounded-full blur-sm animate-pulse delay-1000" />
-      <div className="absolute bottom-40 right-10 w-4 h-4 bg-pink-400/30 rounded-full blur-sm animate-pulse delay-1500" />
+{/* Scale the entire leaf instead of changing height */}
+<motion.div
+  animate={{
+    y: [30, 40, 30],
+    rotate: [-4, 4, -4],
+    scaleY: [2.5, 2.5, 2.5], // Makes the leaf much taller
+    scaleX: [1.2, 1.2, 1.2], // Slightly wider to keep proportions natural
+  }}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="w-14 origin-center mt-8"
+>
+  <svg
+    viewBox="0 0 24 24"
+    className="w-full h-auto"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    {/* Leaf body */}
+    <path
+      d="M12 2C6.2 4.8 3.2 9.5 4 14c0.8 4.5 4.2 8 8 8s7.2-3.5 8-8c0.8-4.5-2.2-9.2-8-12z"
+      fill="#7A7B4F"
+    />
+
+    {/* Main vein */}
+    <path
+      d="M12 4V20"
+      stroke="#E6E1D7"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      opacity="0.65"
+    />
+
+    {/* Side vein */}
+    <path
+      d="M12 10C10 9 8 7.5 7 6"
+      stroke="#E6E1D7"
+      strokeWidth="0.9"
+      strokeLinecap="round"
+      opacity="0.4"
+    />
+  </svg>
+</motion.div>
+  {/* Stem line (kept minimal, matches scroll direction) */}
+  <motion.div
+    className="w-px h-20 bg-gradient-to-b from-accent-olive via-accent-olive/40 to-transparent"
+    animate={{ height: [60, 85, 60] }}
+    transition={{ duration: 2.5, repeat: Infinity }}
+  />
+</motion.div>
+      </div>
     </section>
   );
 };

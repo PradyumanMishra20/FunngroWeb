@@ -5,358 +5,317 @@ import { useInView } from 'react-intersection-observer';
 const WhyChooseMe = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.08,
   });
 
   const reasons = [
     {
       title: "Clean Code",
-      description: "I write structured, maintainable code with attention to detail and best practices.",
-      icon: "🧹",
-      color: "from-blue-500 to-cyan-500",
-      features: ["Modern React patterns", "Component organization", "Code readability"]
+      description:
+        "I build structured frontend systems with maintainability, scalability, and clarity in mind.",
+      icon: "✦",
+      features: [
+        "Component-driven architecture",
+        "Readable code structure",
+        "Modern React practices",
+      ],
     },
     {
-      title: "Strong Frontend",
-      description: "I build modern, responsive interfaces with attention to user experience and accessibility.",
-      icon: "🎨",
-      color: "from-purple-500 to-pink-500",
-      features: ["React expertise", "Responsive design", "Clean components"]
+      title: "Refined Frontend",
+      description:
+        "I focus on interfaces that feel smooth, minimal, responsive, and visually balanced.",
+      icon: "◌",
+      features: [
+        "Responsive layouts",
+        "Editorial visual systems",
+        "Motion with purpose",
+      ],
     },
     {
-      title: "Fast Learning",
-      description: "I quickly adapt to new tools and improve skills through hands-on project work.",
-      icon: "⚡",
-      color: "from-green-500 to-emerald-500",
-      features: ["Quick adaptation", "Continuous improvement", "Practical experience"]
+      title: "Fast Iteration",
+      description:
+        "I move quickly, improve continuously, and adapt fast while keeping the quality consistent.",
+      icon: "↗",
+      features: [
+        "Rapid implementation",
+        "Continuous improvement",
+        "Hands-on problem solving",
+      ],
     },
     {
-      title: "Clear Communication",
-      description: "I provide regular updates, listen to feedback, and keep the development process transparent.",
-      icon: "💬",
-      color: "from-green-500 to-emerald-500",
-      features: ["Clear timelines", "Honest feedback", "Active collaboration"]
-    }
+      title: "Reliable Communication",
+      description:
+        "Clear updates, realistic timelines, and transparent collaboration throughout the process.",
+      icon: "⌁",
+      features: [
+        "Clear communication",
+        "Consistent updates",
+        "Collaborative workflow",
+      ],
+    },
   ];
 
   const process = [
     {
       step: "01",
-      title: "Understand Idea",
-      description: "I listen to your requirements and clarify the project scope."
+      title: "Understand",
+      description:
+        "Understanding the problem, requirements, and overall direction before touching the design or code.",
     },
     {
-      step: "02", 
-      title: "Plan Features",
-      description: "I outline the main features and create a simple development plan."
+      step: "02",
+      title: "Structure",
+      description:
+        "Creating a clean frontend structure with thoughtful layout, hierarchy, and interaction flow.",
     },
     {
       step: "03",
-      title: "Build & Improve",
-      description: "I develop the application with regular updates and improvements."
+      title: "Build",
+      description:
+        "Developing responsive, scalable components with refined motion and polished UI behavior.",
     },
     {
       step: "04",
-      title: "Review & Refine",
-      description: "I test, fix issues, and improve performance and usability."
-    }
+      title: "Refine",
+      description:
+        "Testing, improving details, optimizing performance, and polishing the overall experience.",
+    },
   ];
 
   return (
     <section
-  id="why-choose-me"
-  className="py-14 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 section-dark section-divider overflow-hidden"
->
-      <div className="container-tight">
-        {/* Section Header */}
+      id="why-choose-me"
+      className="section-padding section-light section-divider relative overflow-hidden"
+    >
+      {/* Ambient Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-accent-gold/5 blur-[140px] rounded-full" />
+        <div className="absolute bottom-0 right-1/4 w-[420px] h-[420px] bg-accent-olive/5 blur-[140px] rounded-full" />
+      </div>
+
+      <div className="container-tight relative z-10">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16 lg:mb-20"
           ref={ref}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-24"
         >
-          <h2 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: "700",
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}
-          >
+          <p className="text-ui uppercase tracking-[0.28em] text-text-muted mb-6">
             Why Choose Me
+          </p>
+
+          <h2 className="font-display text-heading-1 text-text-primary leading-[0.95] mb-8 max-w-5xl mx-auto">
+            Thoughtful frontend systems with a refined visual approach.
           </h2>
-          <div className="flex items-center justify-center space-x-2 mb-6">
-            <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
-          </div>
-          <p className="text-gray-300 mt-8 max-w-3xl mx-auto text-lg leading-relaxed">
-            I focus on writing clean, structured code and creating intuitive user interfaces that work reliably.
+
+          <motion.div
+            className="w-20 h-px bg-accent-gold/40 mx-auto"
+            initial={{ width: 0, opacity: 0 }}
+            animate={inView ? { width: 80, opacity: 1 } : {}}
+            transition={{ duration: 1.2, delay: 0.2 }}
+          />
+
+          <p className="text-body-large text-text-secondary max-w-3xl mx-auto mt-8 leading-relaxed">
+            I focus on building modern interfaces that feel clean, intentional,
+            responsive, and easy to use without unnecessary complexity.
           </p>
         </motion.div>
 
-        {/* Main Reasons Grid */}
-        <div className="grid md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-20">
+        {/* Reasons Grid */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-28">
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              className="bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all duration-300"
+              transition={{
+                duration: 0.7,
+                delay: index * 0.12,
+              }}
+              whileHover={{
+                y: -6,
+              }}
+              className="group relative"
             >
-              <div className="flex items-start space-x-4">
-                <div className={`w-12 h-12 bg-gradient-to-r ${reason.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-2xl">{reason.icon}</span>
+              <div className="absolute inset-0 bg-background-secondary border border-black/5 rounded-5xl shadow-editorial transition-all duration-700 group-hover:-translate-y-1 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.06)]" />
+
+              <div className="relative z-10 p-8 sm:p-10">
+                <div className="flex items-start justify-between mb-10">
+                  <div className="w-14 h-14 rounded-full bg-background-tertiary border border-black/5 flex items-center justify-center">
+                    <span className="text-xl text-accent-gold">
+                      {reason.icon}
+                    </span>
+                  </div>
+
+                  <motion.div
+                    className="w-12 h-px bg-accent-gold/30 mt-7"
+                    whileHover={{ width: 72 }}
+                    transition={{ duration: 0.5 }}
+                  />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-3">{reason.title}</h3>
-                  <p className="text-gray-300 mb-4 leading-relaxed">{reason.description}</p>
-                  <ul className="space-y-2">
-                    {reason.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center space-x-2 text-gray-400 text-sm">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+
+                <h3 className="font-display text-3xl text-text-primary mb-4 leading-tight">
+                  {reason.title}
+                </h3>
+
+                <p className="text-text-secondary leading-relaxed mb-8">
+                  {reason.description}
+                </p>
+
+                <ul className="space-y-3">
+                  {reason.features.map((feature, featureIndex) => (
+                    <li
+                      key={featureIndex}
+                      className="flex items-center text-sm text-text-muted"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent-gold mr-3" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Enhanced Process Section with Animations */}
+        {/* Process Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-1 relative overflow-hidden"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-28"
         >
-          {/* Subtle Animated Background */}
-          <div className="absolute inset-0 opacity-5">
-            <motion.div
-              className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
-              animate={{ 
-                x: [0, 30, 0],
-                y: [0, -20, 0],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                duration: 8, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-3xl"
-              animate={{ 
-                x: [0, -20, 0],
-                y: [0, 15, 0],
-                scale: [1, 0.9, 1]
-              }}
-              transition={{ 
-                duration: 10, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+          <div className="text-center mb-16">
+            <p className="text-ui uppercase tracking-[0.24em] text-text-muted mb-5">
+              Process
+            </p>
+
+            <h3 className="font-display text-heading-2 text-text-primary mb-6">
+              A clean and structured workflow.
+            </h3>
+
+            <div className="w-20 h-px bg-accent-gold/40 mx-auto" />
           </div>
 
-          {/* Section Header */}
-          <motion.h3 
-            className="text-2xl sm:text-3xl font-bold text-white mb-8 leading-tight relative z-10 text-center"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: "700",
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            My Process
-          </motion.h3>
-          <motion.div 
-            className="flex items-center justify-center mb-8 mx-auto"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            style={{ width: "120px" }}
-          >
-            <div className="w-8 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded-full" />
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full" />
-          </motion.div>
-
-          {/* Process Grid with Enhanced Animations */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {process.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.6 + index * 0.15,
-                  ease: "easeOut"
+                transition={{
+                  duration: 0.8,
+                  delay: 0.2 + index * 0.15,
                 }}
-                whileHover={{ 
-                  y: -8, 
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: "easeOut" }
+                whileHover={{
+                  y: -6,
                 }}
-                className="relative group pt-6 sm:pt-8"
+                className="relative group"
               >
-                {/* Card Background with Hover Glow */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-md border border-white/10 rounded-2xl group-hover:border-white/20 group-hover:shadow-2xl group-hover:shadow-blue-500/10 transition-all duration-300"
-                  whileHover={{
-                    boxShadow: "0 20px 40px -10px rgba(59, 130, 246, 0.3)"
-                  }}
-                />
+                <div className="absolute inset-0 bg-background-secondary border border-black/5 rounded-5xl shadow-editorial transition-all duration-700 group-hover:-translate-y-1" />
 
-                {/* Step Number with Enhanced Animation */}
-                <motion.div
-                  className="relative w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 mx-auto z-10"
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={inView ? { 
-                    scale: 1, 
-                    rotate: 0 
-                  } : { 
-                    scale: 0, 
-                    rotate: -180 
-                  }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 0.8 + index * 0.2,
-                    ease: "backOut"
-                  }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)"
-                  }}
-                >
-                  {/* Pulsing Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-60 blur-md"
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      opacity: [0.6, 0.3, 0.6]
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity,
-                      delay: index * 0.5
-                    }}
-                  />
-                  <span className="relative z-10">{item.step}</span>
-                </motion.div>
-
-                {/* Content with Micro Animations */}
-                <div className="px-4 sm:px-6 pb-5 sm:pb-6 pt-6 sm:pt-8 relative z-10">
-                  <motion.h4 
-                    className="text-lg font-semibold text-white mb-3 text-center"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 1.0 + index * 0.2,
-                      ease: "easeOut"
-                    }}
-                  >
-                    {item.title}
-                  </motion.h4>
-                  
-                  <motion.p 
-                    className="text-gray-400 text-sm leading-relaxed text-center"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 1.2 + index * 0.2,
-                      ease: "easeOut"
-                    }}
-                  >
-                    {item.description}
-                  </motion.p>
-                </div>
-
-                {/* Horizontal Connecting Line */}
-                {index < process.length - 1 && (
-                  <motion.div
-                    className="hidden md:block absolute top-7 left-full w-8 h-px -translate-y-1/2 overflow-visible z-0"
-                    initial={{ scaleX: 0 }}
-                    animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-                    transition={{ 
-                      duration: 1.2, 
-                      delay: 1.4 + index * 0.3,
-                      ease: "easeOut"
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/50 to-purple-500/50">
-                      {/* Flowing Particle */}
-                      <motion.div
-                        className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full opacity-80"
-                        animate={{ 
-                          x: ["0%", "100%"],
-                          opacity: [0, 1, 1, 0]
-                        }}
-                        transition={{ 
-                          duration: 2, 
-                          repeat: Infinity, 
-                          ease: "easeInOut",
-                          delay: index * 0.6
-                        }}
-                      />
+                <div className="relative z-10 p-8 sm:p-10">
+                  <div className="flex items-center justify-between mb-12">
+                    <div className="w-14 h-14 rounded-full bg-background-tertiary border border-black/5 flex items-center justify-center">
+                      <span className="text-sm tracking-wide text-accent-gold font-medium">
+                        {item.step}
+                      </span>
                     </div>
-                  </motion.div>
-                )}
+
+                    <div className="w-10 h-px bg-accent-gold/30" />
+                  </div>
+
+                  <h4 className="font-display text-2xl text-text-primary mb-4">
+                    {item.title}
+                  </h4>
+
+                  <p className="text-text-secondary leading-relaxed text-sm">
+                    {item.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* CTA Section */}
+        {/* Philosophy Block */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mt-12 sm:mt-16"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          whileHover={{
+            y: -2,
+            transition: { duration: 0.8 },
+          }}
+          className="bg-background-secondary/80 border border-black/5 rounded-5xl p-10 sm:p-14 text-center shadow-editorial mb-20"
         >
-          <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-2xl p-5 sm:p-6 lg:p-8">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              I focus on creating clean, functional applications and clear communication throughout the development process.
+          <blockquote className="font-display text-2xl sm:text-3xl italic text-text-secondary leading-relaxed max-w-4xl mx-auto">
+            "Good frontend work is not about adding more. It is about removing
+            friction until the experience feels effortless."
+          </blockquote>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="relative overflow-hidden bg-background-secondary border border-black/5 rounded-5xl shadow-editorial p-10 sm:p-14 text-center"
+        >
+          <div className="absolute inset-0 opacity-[0.03]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.2),transparent_60%)]" />
+          </div>
+
+          <div className="relative z-10">
+            <p className="text-ui uppercase tracking-[0.24em] text-text-muted mb-6">
+              Collaboration
             </p>
+
+            <h3 className="font-display text-4xl sm:text-5xl text-text-primary mb-6 leading-tight">
+              Ready to build something refined?
+            </h3>
+
+            <p className="text-text-secondary max-w-2xl mx-auto leading-relaxed mb-10">
+              Clean structure, modern frontend systems, thoughtful interaction,
+              and a polished visual experience from start to finish.
+            </p>
+
             <motion.button
               onClick={() => {
                 const element = document.getElementById('contact');
+
                 if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
+                  element.scrollIntoView({
+                    behavior: 'smooth',
+                  });
                 }
               }}
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-1 text-lg overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-accent-olive text-white rounded-full transition-all duration-500 hover:bg-accent-gold"
             >
-              <span className="relative z-10 flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <span>Let's Work Together</span>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span>Start a Project</span>
+
+              <motion.svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                whileHover={{ x: 3 }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.8}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </motion.svg>
             </motion.button>
           </div>
         </motion.div>

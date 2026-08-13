@@ -1,451 +1,178 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-/* ==========================================
-   GLOBAL FOUNDATION
-========================================== */
+@theme {
+  --color-ink-900: #070707;
+  --color-ink-800: #0d0d0d;
+  --color-ink-700: #151515;
+  --color-ink-600: #1c1c1c;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+  --color-fg: #ffffff;
+  --color-muted: #a1a1a1;
+  --color-faint: #6b6b6b;
+  --color-accent: #4d5dfb;
+  --color-accent-soft: #8b93ff;
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body {
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink-900);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 45%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-soft);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink-900);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+    border: 3px solid var(--color-ink-900);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@utility shell {
   width: 100%;
-  overflow-x: hidden;
-  background: #E6E1D7;
-  color: #2A2A26;
-  font-family: 'Inter', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 768px) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 1280px) {
+    padding-inline: 2.5rem;
+  }
 }
 
-* {
-  box-sizing: border-box;
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-faint);
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
-/* ==========================================
-   ROOT DESIGN TOKENS
-========================================== */
-
-:root {
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  --spacing-3xl: 4rem;
-  --spacing-4xl: 6rem;
-  --spacing-5xl: 8rem;
-
-  --radius-sm: 0.5rem;
-  --radius-md: 0.875rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 2rem;
-  --radius-2xl: 2.75rem;
+@utility hairline-t {
+  border-top: 1px solid var(--color-line);
 }
 
-/* ==========================================
-   TYPOGRAPHY
-========================================== */
-
-.font-space-grotesk-force {
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-/* ==========================================
-   SELECTION
-========================================== */
-
-::selection {
-  background: rgba(176, 138, 62, 0.22);
-  color: #2A2A26;
-}
-
-/* ==========================================
-   SCROLLBAR
-========================================== */
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #DDD7CB;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(122, 123, 79, 0.55);
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(122, 123, 79, 0.75);
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(42, 42, 38, 0.05);
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(122, 123, 79, 0.35);
-  border-radius: 999px;
-}
-
-/* ==========================================
-   ACCESSIBILITY
-========================================== */
-
-.focus-visible:focus-visible {
-  outline: 2px solid rgba(176, 138, 62, 0.45);
-  outline-offset: 3px;
-}
-
-/* ==========================================
-   ATMOSPHERIC BACKGROUND
-========================================== */
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at top right,
-      rgba(122, 123, 79, 0.06),
-      transparent 40%),
-    radial-gradient(circle at bottom left,
-      rgba(176, 138, 62, 0.05),
-      transparent 45%);
-  z-index: -1;
-}
-
-/* ==========================================
-   BUTTONS
-========================================== */
-
-.btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-full
-         bg-dark-primary text-text-inverse
-         font-medium tracking-wide
-         transition-all duration-500;
-  box-shadow: 0 10px 30px rgba(27, 29, 24, 0.10);
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 40px rgba(27, 29, 24, 0.14);
-}
-
-.btn-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-full
-         bg-background-secondary/80
-         text-text-primary
-         border border-black/5
-         font-medium tracking-wide
-         transition-all duration-500;
-  backdrop-filter: blur(8px);
-}
-
-.btn-secondary:hover {
-  background: rgba(212, 206, 194, 0.85);
-  transform: translateY(-1px);
-}
-
-.btn-mobile {
-  @apply px-4 py-3 text-sm font-medium rounded-full
-         min-h-[44px] touch-manipulation;
-}
-
-/* ==========================================
-   NAVIGATION
-========================================== */
-
-.nav-link {
-  @apply relative text-text-secondary hover:text-text-primary
-         transition-colors duration-500;
-}
-
-.nav-link::after {
-  content: '';
+/* Screen-reader-only helper (used by skip link + form status regions) */
+.sr-only:not(:focus):not(:active) {
   position: absolute;
-  left: 0;
-  bottom: -0.35rem;
-  width: 0;
+  width: 1px;
   height: 1px;
-  background: rgba(176, 138, 62, 0.6);
-  transition: width 0.5s ease;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.nav-link:hover::after {
-  width: 100%;
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
-/* ==========================================
-   CARD SYSTEM
-========================================== */
-
-.card-hover {
-  position: relative;
-  transition:
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.6s ease;
+.caret {
+  animation: caret 1.05s steps(1) infinite;
 }
 
-.card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 25px 60px rgba(42, 42, 38, 0.08);
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(243, 239, 231, 0.18),
-      rgba(122, 123, 79, 0.04)
-    );
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  pointer-events: none;
+.marquee-track {
+  animation: marquee 38s linear infinite;
 }
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-/* ==========================================
-   SECTION SPACING
-========================================== */
-
-.section-padding {
-  @apply py-20 sm:py-28 lg:py-36;
-}
-
-.section-padding-sm {
-  @apply py-16 sm:py-24 lg:py-28;
-}
-
-.mobile-section-padding {
-  @apply py-16 px-4 sm:py-24 sm:px-6 lg:py-36 lg:px-8;
-}
-
-/* ==========================================
-   CONTAINERS
-========================================== */
-
-.container-custom {
-  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16;
-}
-
-.container-tight {
-  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-/* ==========================================
-   BACKGROUND UTILITIES
-========================================== */
-
-.section-divider {
-  @apply border-t border-black/5;
-}
-
-.section-dark {
-  @apply bg-dark-primary text-text-inverse;
-}
-
-.section-light {
-  @apply bg-background-secondary;
-}
-
-.section-medium {
-  @apply bg-background-tertiary;
-}
-
-/* ==========================================
-   TEXT UTILITIES
-========================================== */
-
-.text-gradient {
-  background: linear-gradient(
-    135deg,
-    #2A2A26 0%,
-    #7A7B4F 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ==========================================
-   FORMS
-========================================== */
-
-.form-input {
-  @apply w-full px-5 py-4 rounded-2xl
-         bg-background-secondary/70
-         border border-black/5
-         text-text-primary
-         placeholder:text-text-muted
-         transition-all duration-500
-         focus:outline-none;
-  backdrop-filter: blur(8px);
-}
-
-.form-input:focus {
-  border-color: rgba(176, 138, 62, 0.25);
-  box-shadow: 0 0 0 4px rgba(176, 138, 62, 0.08);
-}
-
-/* ==========================================
-   TESTIMONIALS
-========================================== */
-
-.testimonial-card {
-  @apply rounded-3xl p-6
-         bg-background-secondary/70
-         border border-black/5
-         transition-all duration-500;
-  backdrop-filter: blur(8px);
-}
-
-.testimonial-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 25px 60px rgba(42, 42, 38, 0.08);
-}
-
-/* ==========================================
-   ACHIEVEMENTS
-========================================== */
-
-.achievement-metric {
-  @apply text-center p-4 transition-all duration-500;
-}
-
-.achievement-metric:hover {
-  transform: translateY(-2px);
-}
-
-.achievement-number {
-  @apply block text-3xl font-medium text-accent-gold mb-2;
-}
-
-.achievement-label {
-  @apply text-sm tracking-wide text-text-muted uppercase;
-}
-
-/* ==========================================
-   SCROLL INDICATOR
-========================================== */
-
-.scroll-indicator {
-  @apply left-1/2 -translate-x-1/2;
-  position: relative;
-}
-
-/* ==========================================
-   RESPONSIVE HELPERS
-========================================== */
-
-.mobile-card-padding {
-  @apply p-4 sm:p-6 lg:p-8;
-}
-
-.mobile-text-spacing {
-  @apply space-y-4 sm:space-y-6 lg:space-y-8;
-}
-
-/* ==========================================
-   REDUCED MOTION
-========================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .card-hover:hover,
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .testimonial-card:hover,
-  .achievement-metric:hover {
-    transform: none !important;
-    box-shadow: none !important;
-  }
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 768px) {
-  .nav-link::after {
-    display: none;
-  }
-
-  .card-hover:hover,
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .testimonial-card:hover,
-  .achievement-metric:hover {
-    transform: none;
-    box-shadow: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .btn-primary,
-  .btn-secondary {
-    @apply px-4 py-2 text-sm;
-  }
-}
-
-/* ==========================================
-   SCROLL INDICATOR RESPONSIVE
-========================================== */
-
-@media (max-width: 999px) {
-  .scroll-indicator-large-screen {
-    display: none !important;
-  }
-}
-
-@media (max-width: 1000px) {
-  .scroll-indicator-responsive {
-    bottom: -50px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  .scroll-indicator-text-responsive {
-    font-size: 14px !important;
-  }
-
-  .scroll-indicator-arrow-responsive {
-    height: 80px !important;
+  .marquee-track {
+    animation: none;
   }
 }

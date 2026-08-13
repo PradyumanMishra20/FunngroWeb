@@ -1,39 +1,31 @@
 {
-  "name": "portfolio-website",
+  "name": "pradyuman-portfolio",
+  "private": true,
   "version": "1.0.0",
-  "description": "Professional portfolio website",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
-    "framer-motion": "^10.0.0",
-    "lucide-react": "^1.16.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-intersection-observer": "^9.4.0",
-    "react-router-dom": "^6.8.0",
-    "react-scripts": "5.0.1"
+    "framer-motion": "^12.43.0",
+    "lucide-react": "^1.28.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0",
-    "tailwindcss": "^3.2.0"
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "oxlint": "^1.75.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "description": "Portfolio of Pradyuman Mishra — student developer"
 }
